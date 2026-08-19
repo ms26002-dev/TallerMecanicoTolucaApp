@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="TallerToluca.BL/TallerToluca.BL.csproj" />
+  <Project Path="TallerToluca.DAL/TallerToluca.DAL.csproj" />
+  <Project Path="TallerToluca.EN/TallerToluca.EN.csproj" />
+  <Project Path="TallerTolucaUI/TallerTolucaUI.csproj" />
+</Solution>

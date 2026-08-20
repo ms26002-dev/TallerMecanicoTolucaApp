@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using TallerToluca.DAL;
 using TallerToluca.EN;
 
@@ -31,6 +32,11 @@ namespace TallerToluca.BL
             }
 
             return _inventarioDAL.RegistrarMovimiento(mov);
+        }
+
+        public List<RepuestoEN> ObtenerTodosLosRepuestos()
+        {
+            return _inventarioDAL.ConsultarRepuestos();
         }
     }
 }

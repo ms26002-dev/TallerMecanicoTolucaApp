@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using TallerToluca.DAL;
 using TallerToluca.EN;
 
@@ -29,6 +30,11 @@ namespace TallerToluca.BL
             _cajaDAL.RegistrarMovimiento(cajaActiva.CajaID, factura.Total, "Ingreso");
 
             return resultado;
+        }
+
+        public List<FacturaEN> ObtenerTodasLasFacturas()
+        {
+            return _facturaDAL.ConsultarTodas();
         }
     }
 }

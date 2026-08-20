@@ -42,5 +42,10 @@ namespace TallerToluca.BL
         {
             return _clienteDAL.ConsultarActivos();
         }
+
+        public List<ClienteEN> ObtenerTodosLosClientes()
+        {
+            return _clienteDAL.ConsultarTodos();
+        }
     }
 }

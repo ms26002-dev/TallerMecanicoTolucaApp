@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using TallerToluca.EN;
 
@@ -19,6 +20,31 @@ namespace TallerToluca.DAL
                 cmd.Parameters.AddWithValue("@Motivo", cita.Motivo);
                 return cmd.ExecuteNonQuery();
             }
+        }
+
+        public List<CitaEN> ConsultarTodas()
+        {
+            List<CitaEN> lista = new List<CitaEN>();
+            using (SqlConnection conn = ConexionDAL.ObtenerConexion())
+            {
+                string query = "SELECT CitaID, ClienteID, VehiculoID, FechaHora, Motivo, Estado FROM Citas ORDER BY FechaHora DESC";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    lista.Add(new CitaEN
+                    {
+                        CitaID = reader.GetInt32(0),
+                        ClienteID = reader.GetInt32(1),
+                        VehiculoID = reader.GetInt32(2),
+                        FechaHora = reader.GetDateTime(3),
+                        Motivo = reader.GetString(4),
+                        Estado = reader.GetString(5)
+                    });
+                }
+            }
+            return lista;
         }
 
         public int ActualizarEstado(int citaID, string estado)

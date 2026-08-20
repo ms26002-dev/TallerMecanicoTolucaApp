@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using TallerToluca.DAL;
 using TallerToluca.EN;
 
@@ -39,6 +40,11 @@ namespace TallerToluca.BL
             }
 
             _ordenDAL.ActualizarEstado(ordenID, nuevoEstado);
+        }
+
+        public List<OrdenTrabajoEN> ObtenerTodasLasOrdenes()
+        {
+            return _ordenDAL.ConsultarTodas();
         }
     }
 }

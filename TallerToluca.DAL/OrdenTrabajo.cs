@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using TallerToluca.EN;
 
@@ -21,6 +22,35 @@ namespace TallerToluca.DAL
                 cmd.Parameters.AddWithValue("@Observaciones", (object)orden.Observaciones ?? DBNull.Value);
                 return cmd.ExecuteNonQuery();
             }
+        }
+
+        public List<OrdenTrabajoEN> ConsultarTodas()
+        {
+            List<OrdenTrabajoEN> lista = new List<OrdenTrabajoEN>();
+            using (SqlConnection conn = ConexionDAL.ObtenerConexion())
+            {
+                string query = @"SELECT OrdenID, FechaCreacion, ClienteID, VehiculoID, EmpleadoID, Estado, KilometrajeEntrada, DescripcionDiagnostico, Observaciones 
+                                 FROM OrdenesTrabajo ORDER BY OrdenID DESC";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    lista.Add(new OrdenTrabajoEN
+                    {
+                        OrdenID = reader.GetInt32(0),
+                        FechaCreacion = reader.GetDateTime(1),
+                        ClienteID = reader.GetInt32(2),
+                        VehiculoID = reader.GetInt32(3),
+                        EmpleadoID = reader.GetInt32(4),
+                        Estado = reader.GetString(5),
+                        KilometrajeEntrada = reader.GetInt32(6),
+                        DescripcionDiagnostico = reader.GetString(7),
+                        Observaciones = reader.IsDBNull(8) ? "" : reader.GetString(8)
+                    });
+                }
+            }
+            return lista;
         }
 
         public bool MecanicoTieneOrdenActiva(int empleadoID)

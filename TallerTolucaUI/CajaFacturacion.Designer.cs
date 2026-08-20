@@ -1,10 +1,39 @@
+using System.Drawing;
+using System.Windows.Forms;
+
 namespace TallerTolucaUI
 {
     partial class FrmCajaFacturacion
     {
         private System.ComponentModel.IContainer components = null;
-        private System.Windows.Forms.TextBox txtMontoApertura, txtOrdenID, txtClienteID, txtSubTotal, txtTotal;
-        private System.Windows.Forms.Button btnAbrirCaja, btnFacturarCobrar;
+
+        // Encabezado
+        private Panel pnlHeader;
+        private Label lblTitulo;
+        private Label lblSubtitulo;
+
+        // Tarjeta Apertura de Caja
+        private Panel pnlApertura;
+        private Label lblAperturaTitulo;
+        private Label lblAperturaSub;
+        private Label lblMontoApertura;
+        private TextBox txtMontoApertura;
+        private Button btnAbrirCaja;
+
+        // Tarjeta Facturación y Cobro
+        private Panel pnlFacturacion;
+        private Label lblFacturacionTitulo;
+        private Label lblOrdenID;
+        private TextBox txtOrdenID;
+        private Label lblClienteID;
+        private TextBox txtClienteID;
+        private Label lblSubTotal;
+        private TextBox txtSubTotal;
+        private Label lblTotal;
+        private TextBox txtTotal;
+        private Label lblMetodoPago;
+        private TextBox txtMetodoPago;
+        private Button btnFacturarCobrar;
 
         protected override void Dispose(bool disposing)
         {
@@ -14,64 +43,189 @@ namespace TallerTolucaUI
 
         private void InitializeComponent()
         {
-            txtMontoApertura = new System.Windows.Forms.TextBox();
-            txtOrdenID = new System.Windows.Forms.TextBox();
-            txtClienteID = new System.Windows.Forms.TextBox();
-            txtSubTotal = new System.Windows.Forms.TextBox();
-            txtTotal = new System.Windows.Forms.TextBox();
-            btnAbrirCaja = new System.Windows.Forms.Button();
-            btnFacturarCobrar = new System.Windows.Forms.Button();
+            pnlHeader = new Panel();
+            lblTitulo = new Label();
+            lblSubtitulo = new Label();
+
+            pnlApertura = new Panel();
+            lblAperturaTitulo = new Label();
+            lblAperturaSub = new Label();
+            lblMontoApertura = new Label();
+            txtMontoApertura = new TextBox();
+            btnAbrirCaja = new Button();
+
+            pnlFacturacion = new Panel();
+            lblFacturacionTitulo = new Label();
+            lblOrdenID = new Label();
+            txtOrdenID = new TextBox();
+            lblClienteID = new Label();
+            txtClienteID = new TextBox();
+            lblSubTotal = new Label();
+            txtSubTotal = new TextBox();
+            lblTotal = new Label();
+            txtTotal = new TextBox();
+            lblMetodoPago = new Label();
+            txtMetodoPago = new TextBox();
+            btnFacturarCobrar = new Button();
+
+            pnlHeader.SuspendLayout();
+            pnlApertura.SuspendLayout();
+            pnlFacturacion.SuspendLayout();
             SuspendLayout();
 
-            ConfigureText(txtMontoApertura, "txtMontoApertura", 30, 30);
-            ConfigureText(txtOrdenID, "txtOrdenID", 30, 70);
-            ConfigureText(txtClienteID, "txtClienteID", 30, 110);
-            ConfigureText(txtSubTotal, "txtSubTotal", 30, 150);
-            ConfigureText(txtTotal, "txtTotal", 30, 190);
+            // ============================================
+            // pnlHeader (Encabezado Superior)
+            // ============================================
+            pnlHeader.Dock = DockStyle.Top;
+            pnlHeader.Height = 75;
+            pnlHeader.BackColor = Color.FromArgb(240, 248, 255);
+            pnlHeader.Controls.Add(lblSubtitulo);
+            pnlHeader.Controls.Add(lblTitulo);
 
-            btnAbrirCaja.Location = new System.Drawing.Point(270, 30);
-            btnAbrirCaja.Size = new System.Drawing.Size(190, 40);
-            btnAbrirCaja.Text = "Abrir caja";
-            btnAbrirCaja.Name = "btnAbrirCaja";
-            btnAbrirCaja.BackColor = System.Drawing.Color.FromArgb(0, 191, 255);
-            btnAbrirCaja.ForeColor = System.Drawing.Color.White;
-            btnAbrirCaja.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            btnAbrirCaja.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            lblTitulo.Text = "Caja y Facturación";
+            lblTitulo.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
+            lblTitulo.ForeColor = Color.FromArgb(15, 23, 42);
+            lblTitulo.Location = new Point(25, 12);
+            lblTitulo.AutoSize = true;
+
+            lblSubtitulo.Text = "Apertura de caja operativa, procesamiento de cobros y emisión de facturas en efectivo.";
+            lblSubtitulo.Font = new Font("Segoe UI", 9.5F);
+            lblSubtitulo.ForeColor = Color.FromArgb(100, 116, 139);
+            lblSubtitulo.Location = new Point(27, 47);
+            lblSubtitulo.AutoSize = true;
+
+            // ============================================
+            // pnlApertura (Tarjeta Izquierda: Apertura de Caja)
+            // ============================================
+            pnlApertura.BackColor = Color.White;
+            pnlApertura.Location = new Point(30, 95);
+            pnlApertura.Size = new Size(380, 280);
+            pnlApertura.BorderStyle = BorderStyle.FixedSingle;
+
+            lblAperturaTitulo.Text = "💵 Apertura de Caja";
+            lblAperturaTitulo.Font = new Font("Segoe UI", 12.5F, FontStyle.Bold);
+            lblAperturaTitulo.ForeColor = Color.FromArgb(15, 23, 42);
+            lblAperturaTitulo.Location = new Point(25, 18);
+            lblAperturaTitulo.AutoSize = true;
+
+            lblAperturaSub.Text = "Registre el monto inicial en efectivo para iniciar la jornada operativa de caja.";
+            lblAperturaSub.Font = new Font("Segoe UI", 8.5F);
+            lblAperturaSub.ForeColor = Color.FromArgb(100, 116, 139);
+            lblAperturaSub.Location = new Point(25, 50);
+            lblAperturaSub.Size = new Size(330, 40);
+
+            ConfigurarEtiqueta(lblMontoApertura, "Monto Inicial de Apertura ($) *", 25, 105);
+            ConfigurarInput(txtMontoApertura, "Ej. 100.00", 25, 130, 325);
+
+            btnAbrirCaja.Text = "💵 ABRIR CAJA";
+            btnAbrirCaja.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnAbrirCaja.BackColor = Color.FromArgb(16, 185, 129); // Emerald / Green
+            btnAbrirCaja.ForeColor = Color.White;
+            btnAbrirCaja.FlatStyle = FlatStyle.Flat;
             btnAbrirCaja.FlatAppearance.BorderSize = 0;
-            btnAbrirCaja.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnAbrirCaja.Size = new Size(325, 44);
+            btnAbrirCaja.Location = new Point(25, 190);
+            btnAbrirCaja.Cursor = Cursors.Hand;
             btnAbrirCaja.Click += btnAbrirCaja_Click;
 
-            btnFacturarCobrar.Location = new System.Drawing.Point(270, 90);
-            btnFacturarCobrar.Size = new System.Drawing.Size(190, 40);
-            btnFacturarCobrar.Text = "Facturar / Cobrar";
-            btnFacturarCobrar.Name = "btnFacturarCobrar";
-            btnFacturarCobrar.BackColor = System.Drawing.Color.FromArgb(0, 191, 255);
-            btnFacturarCobrar.ForeColor = System.Drawing.Color.White;
-            btnFacturarCobrar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            btnFacturarCobrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            pnlApertura.Controls.AddRange(new Control[] {
+                lblAperturaTitulo, lblAperturaSub, lblMontoApertura, txtMontoApertura, btnAbrirCaja
+            });
+
+            // ============================================
+            // pnlFacturacion (Tarjeta Derecha: Cobro y Factura)
+            // ============================================
+            pnlFacturacion.BackColor = Color.White;
+            pnlFacturacion.Location = new Point(435, 95);
+            pnlFacturacion.Size = new Size(515, 440);
+            pnlFacturacion.BorderStyle = BorderStyle.FixedSingle;
+
+            lblFacturacionTitulo.Text = "🧾 Facturación y Cobro";
+            lblFacturacionTitulo.Font = new Font("Segoe UI", 12.5F, FontStyle.Bold);
+            lblFacturacionTitulo.ForeColor = Color.FromArgb(15, 23, 42);
+            lblFacturacionTitulo.Location = new Point(25, 18);
+            lblFacturacionTitulo.AutoSize = true;
+
+            ConfigurarEtiqueta(lblOrdenID, "ID de Orden Finalizada *", 25, 60);
+            ConfigurarInput(txtOrdenID, "Ej. 1", 25, 85, 215);
+
+            ConfigurarEtiqueta(lblClienteID, "ID del Cliente *", 265, 60);
+            ConfigurarInput(txtClienteID, "Ej. 1", 265, 85, 215);
+
+            ConfigurarEtiqueta(lblSubTotal, "SubTotal ($) *", 25, 130);
+            ConfigurarInput(txtSubTotal, "Ej. 80.00", 25, 155, 215);
+
+            ConfigurarEtiqueta(lblTotal, "Total a Pagar ($) *", 265, 130);
+            ConfigurarInput(txtTotal, "Ej. 90.40", 265, 155, 215);
+
+            ConfigurarEtiqueta(lblMetodoPago, "Método de Pago Permitido", 25, 200);
+            txtMetodoPago.Location = new Point(25, 225);
+            txtMetodoPago.Size = new Size(455, 31);
+            txtMetodoPago.Font = new Font("Segoe UI", 10F);
+            txtMetodoPago.BackColor = Color.FromArgb(241, 245, 249);
+            txtMetodoPago.ReadOnly = true;
+            txtMetodoPago.Text = "Efectivo (Único método permitido)";
+
+            btnFacturarCobrar.Text = "🧾 GENERAR FACTURA Y COBRAR";
+            btnFacturarCobrar.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnFacturarCobrar.BackColor = Color.FromArgb(0, 191, 255); // DeepSkyBlue
+            btnFacturarCobrar.ForeColor = Color.White;
+            btnFacturarCobrar.FlatStyle = FlatStyle.Flat;
             btnFacturarCobrar.FlatAppearance.BorderSize = 0;
-            btnFacturarCobrar.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnFacturarCobrar.Size = new Size(455, 46);
+            btnFacturarCobrar.Location = new Point(25, 290);
+            btnFacturarCobrar.Cursor = Cursors.Hand;
             btnFacturarCobrar.Click += btnFacturarCobrar_Click;
 
-            BackColor = System.Drawing.Color.FromArgb(240, 248, 255);
-            Font = new System.Drawing.Font("Segoe UI", 9F);
-            ClientSize = new System.Drawing.Size(520, 280);
-            Controls.AddRange(new System.Windows.Forms.Control[] { txtMontoApertura, txtOrdenID, txtClienteID, txtSubTotal, txtTotal, btnAbrirCaja, btnFacturarCobrar });
+            pnlFacturacion.Controls.AddRange(new Control[] {
+                lblFacturacionTitulo, lblOrdenID, txtOrdenID, lblClienteID, txtClienteID,
+                lblSubTotal, txtSubTotal, lblTotal, txtTotal, lblMetodoPago, txtMetodoPago,
+                btnFacturarCobrar
+            });
+
+            // ============================================
+            // FrmCajaFacturacion (Formulario)
+            // ============================================
+            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(240, 248, 255);
+            ClientSize = new Size(980, 600);
+            Controls.Add(pnlFacturacion);
+            Controls.Add(pnlApertura);
+            Controls.Add(pnlHeader);
+            Font = new Font("Segoe UI", 9F);
+            Name = "FrmCajaFacturacion";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Caja y Facturación";
-            StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            Padding = new Padding(20, 10, 20, 15);
+
+            pnlHeader.ResumeLayout(false);
+            pnlHeader.PerformLayout();
+            pnlApertura.ResumeLayout(false);
+            pnlApertura.PerformLayout();
+            pnlFacturacion.ResumeLayout(false);
+            pnlFacturacion.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
-        private void ConfigureText(System.Windows.Forms.TextBox box, string name, int x, int y)
+        private void ConfigurarEtiqueta(Label lbl, string texto, int x, int y)
         {
-            box.Location = new System.Drawing.Point(x, y);
-            box.Name = name;
-            box.Size = new System.Drawing.Size(210, 31);
-            box.BackColor = System.Drawing.Color.FromArgb(245, 250, 255);
-            box.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            box.Font = new System.Drawing.Font("Segoe UI", 10F);
-            box.ForeColor = System.Drawing.Color.FromArgb(51, 65, 85);
+            lbl.Text = texto;
+            lbl.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lbl.ForeColor = Color.FromArgb(71, 85, 105);
+            lbl.Location = new Point(x, y);
+            lbl.AutoSize = true;
+        }
+
+        private void ConfigurarInput(TextBox txt, string placeholder, int x, int y, int width)
+        {
+            txt.Location = new Point(x, y);
+            txt.Size = new Size(width, 31);
+            txt.Font = new Font("Segoe UI", 10F);
+            txt.BackColor = Color.FromArgb(248, 250, 252);
+            txt.BorderStyle = BorderStyle.FixedSingle;
+            txt.ForeColor = Color.FromArgb(30, 41, 59);
+            txt.PlaceholderText = placeholder;
         }
     }
 }

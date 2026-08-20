@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using TallerToluca.DAL;
 using TallerToluca.EN;
 
@@ -28,6 +29,11 @@ namespace TallerToluca.BL
         public void ProcesarCitasVencidas(int minutosTolerancia = 30)
         {
             _citaDAL.MarcarCitasVencidas(minutosTolerancia);
+        }
+
+        public List<CitaEN> ObtenerTodasLasCitas()
+        {
+            return _citaDAL.ConsultarTodas();
         }
     }
 }

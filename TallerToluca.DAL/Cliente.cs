@@ -46,6 +46,35 @@ namespace TallerToluca.DAL
             }
         }
 
+        public List<ClienteEN> ConsultarTodos()
+        {
+            List<ClienteEN> lista = new List<ClienteEN>();
+            using (SqlConnection conn = ConexionDAL.ObtenerConexion())
+            {
+                string query = @"SELECT c.ClienteID, c.NombreCompleto, c.Telefono, c.Correo, c.Direccion, c.Estado,
+                                         (SELECT COUNT(*) FROM Vehiculos v WHERE v.ClienteID = c.ClienteID) AS VehiculosAsociados
+                                  FROM Clientes c
+                                  ORDER BY c.ClienteID";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    lista.Add(new ClienteEN
+                    {
+                        ClienteID = reader.GetInt32(0),
+                        NombreCompleto = reader.GetString(1),
+                        Telefono = reader.GetString(2),
+                        Correo = reader.IsDBNull(3) ? null : reader.GetString(3),
+                        Direccion = reader.IsDBNull(4) ? null : reader.GetString(4),
+                        Estado = reader.GetString(5),
+                        VehiculosAsociados = reader.GetInt32(6)
+                    });
+                }
+            }
+            return lista;
+        }
+
         public List<ClienteEN> ConsultarActivos()
         {
             List<ClienteEN> lista = new List<ClienteEN>();

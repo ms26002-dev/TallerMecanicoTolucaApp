@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using TallerToluca.EN;
 
@@ -19,6 +20,30 @@ namespace TallerToluca.DAL
                 cmd.Parameters.AddWithValue("@Existencia", repuesto.Existencia);
                 return cmd.ExecuteNonQuery();
             }
+        }
+
+        public List<RepuestoEN> ConsultarRepuestos()
+        {
+            List<RepuestoEN> lista = new List<RepuestoEN>();
+            using (SqlConnection conn = ConexionDAL.ObtenerConexion())
+            {
+                string query = "SELECT RepuestoID, Codigo, NombreRepuesto, PrecioUnitario, Existencia FROM Repuestos ORDER BY RepuestoID DESC";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    lista.Add(new RepuestoEN
+                    {
+                        RepuestoID = reader.GetInt32(0),
+                        Codigo = reader.GetString(1),
+                        NombreRepuesto = reader.GetString(2),
+                        PrecioUnitario = reader.GetDecimal(3),
+                        Existencia = reader.GetInt32(4)
+                    });
+                }
+            }
+            return lista;
         }
 
         public int RegistrarMovimiento(MovimientoInventarioEN mov)

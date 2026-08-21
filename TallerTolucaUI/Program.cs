@@ -15,6 +15,24 @@ namespace TallerTolucaUI
         {
             ApplicationConfiguration.Initialize();
 
+            if (args != null && args.Length > 0 && args[0] == "--capture-empleados")
+            {
+                using (var frm = new FrmEmpleados())
+                {
+                    frm.Show();
+                    Application.DoEvents();
+                    using (Bitmap bmp = new Bitmap(frm.Width, frm.Height))
+                    {
+                        frm.DrawToBitmap(bmp, new Rectangle(0, 0, frm.Width, frm.Height));
+                        string artifactDir = @"C:\Users\user1\.gemini\antigravity-ide\brain\97ccc333-1136-4946-a0c6-95ed9084f2ff";
+                        string outPath = Path.Combine(artifactDir, "empleados_preview.png");
+                        bmp.Save(outPath, System.Drawing.Imaging.ImageFormat.Png);
+                    }
+                    frm.Close();
+                }
+                return;
+            }
+
             if (args != null && args.Length > 0 && args[0] == "--capture-clientes")
             {
                 using (var frm = new FrmClientes())

@@ -22,6 +22,7 @@ CREATE TABLE dbo.Clientes (
     Correo        NVARCHAR(150) NULL,
     Direccion     NVARCHAR(250) NULL,
     Estado        NVARCHAR(20)  NOT NULL DEFAULT 'Activo'
+    DUI   CHAR (8) NOT NULL,
 );
 GO
 
@@ -100,6 +101,10 @@ CREATE TABLE dbo.ControlCaja (
     MontoIngresos   DECIMAL(12,2) NOT NULL DEFAULT 0,
     MontoEgresos    DECIMAL(12,2) NOT NULL DEFAULT 0,
     Estado          NVARCHAR(20) NOT NULL DEFAULT 'Abierta' -- Abierta, Cerrada
+    FacturaId INT IDENTITY(1,1) PRIMARY KEY,
+    AdministradorId INT NOT NULL,
+    EmpleadoId INT NOT NULL,
+
 );
 GO
 

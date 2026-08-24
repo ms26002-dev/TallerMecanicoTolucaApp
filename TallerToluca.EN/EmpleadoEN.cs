@@ -6,6 +6,7 @@ namespace TallerToluca.EN
         public string NombreCompleto { get; set; }
         public string Cargo { get; set; }
         public string Telefono { get; set; }
+        public string Correo { get; set; }
         public string Estado { get; set; } = "Activo";
     }
 }

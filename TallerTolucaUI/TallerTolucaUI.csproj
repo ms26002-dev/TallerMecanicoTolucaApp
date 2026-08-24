@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
@@ -7,6 +7,15 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="ref_ui\**" />
+    <Compile Remove="doc_extracted\**" />
+    <EmbeddedResource Remove="ref_ui\**" />
+    <EmbeddedResource Remove="doc_extracted\**" />
+    <None Remove="ref_ui\**" />
+    <None Remove="doc_extracted\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\TallerToluca.BL\TallerToluca.BL.csproj" />

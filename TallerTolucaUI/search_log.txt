@@ -1,0 +1,26 @@
+User folder: C:\Users\user1
+--- Folder: C:\Users\user1\Desktop
+C:\Users\user1\Desktop\Antigravity.lnk
+C:\Users\user1\Desktop\BaseDatos.sql
+C:\Users\user1\Desktop\desktop.ini
+C:\Users\user1\Desktop\DRAGON BALL FighterZ.url
+C:\Users\user1\Desktop\JAVIER ALBERTO - Chrome.lnk
+C:\Users\user1\Desktop\taller radiador springsg (1.2).docx
+C:\Users\user1\Desktop\TallerMecanicoTolucaApp_UI.zip
+--- Folder: C:\Users\user1\Downloads
+C:\Users\user1\Downloads\Antigravity IDE.exe
+C:\Users\user1\Downloads\Antigravity-x64.exe
+C:\Users\user1\Downloads\BaseDatos.sql.zip
+C:\Users\user1\Downloads\Captura de pantalla 2026-08-04 213315.png
+C:\Users\user1\Downloads\desktop.ini
+C:\Users\user1\Downloads\Microsoft.Services.Store.winmd
+C:\Users\user1\Downloads\OBS-Studio-32.2.1-Windows-x64-Installer.exe
+C:\Users\user1\Downloads\RobloxPlayerInstaller.exe
+C:\Users\user1\Downloads\SteamSetup.exe
+C:\Users\user1\Downloads\TallerMecanicoTolucaApp-master.zip
+C:\Users\user1\Downloads\TallerToluca (1).zip
+C:\Users\user1\Downloads\VisualStudioSetup.exe
+C:\Users\user1\Downloads\vs_SSMS.exe
+C:\Users\user1\Downloads\WhatsApp Installer.exe
+--- Folder: C:\Users\user1\Documents
+C:\Users\user1\Documents\desktop.ini

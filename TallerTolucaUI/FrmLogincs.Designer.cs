@@ -105,7 +105,7 @@ namespace TallerTolucaUI
             lblSubtitulo.Name = "lblSubtitulo";
             lblSubtitulo.Size = new System.Drawing.Size(380, 18);
             lblSubtitulo.TabIndex = 2;
-            lblSubtitulo.Text = "Sistema de Gestión Automotriz - Radiator Springs";
+            lblSubtitulo.Text = "Sistema de Gestión Automotriz - Taller Toluca";
             lblSubtitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 
             // 

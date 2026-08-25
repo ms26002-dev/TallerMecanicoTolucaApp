@@ -47,9 +47,45 @@ namespace TallerTolucaUI
             EstilizarGrid();
             CargarCombos();
             cboEstado.SelectedItem = "Programada";
-            dtpFechaHora.Value = DateTime.Now.AddHours(2);
+            DateTime proxima = DateTime.Now.AddHours(2);
+            dtpFecha.Value = proxima.Date;
+            cboHora.Text = proxima.ToString("hh:mm tt", System.Globalization.CultureInfo.InvariantCulture).ToUpper();
             CargarCitas();
             ActualizarEstadoBotones(false);
+        }
+
+        private bool TryObtenerFechaHoraProgramada(out DateTime fechaHoraResult)
+        {
+            fechaHoraResult = DateTime.MinValue;
+            string horaTexto = cboHora.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(horaTexto))
+                return false;
+
+            string[] formats = new string[]
+            {
+                "h:mm tt", "hh:mm tt", "H:mm", "HH:mm", "h:m tt", "hh:mmtt", "h:mmtt",
+                "h tt", "hh tt", "H", "HH"
+            };
+
+            DateTime timeParsed;
+            bool parsed = DateTime.TryParseExact(horaTexto, formats, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out timeParsed) ||
+                         DateTime.TryParseExact(horaTexto, formats, System.Globalization.CultureInfo.CurrentCulture, System.Globalization.DateTimeStyles.None, out timeParsed) ||
+                         DateTime.TryParse(horaTexto, out timeParsed);
+
+            if (!parsed)
+                return false;
+
+            fechaHoraResult = new DateTime(
+                dtpFecha.Value.Year,
+                dtpFecha.Value.Month,
+                dtpFecha.Value.Day,
+                timeParsed.Hour,
+                timeParsed.Minute,
+                0
+            );
+
+            return true;
         }
 
         private void CargarLogotipo()
@@ -376,7 +412,9 @@ namespace TallerTolucaUI
             {
                 _citaSeleccionadaID = cita.CitaID;
                 txtMotivo.Text = cita.Motivo ?? string.Empty;
-                dtpFechaHora.Value = cita.FechaHora > DateTime.MinValue ? cita.FechaHora : DateTime.Now;
+                DateTime fechaValida = cita.FechaHora > DateTime.MinValue ? cita.FechaHora : DateTime.Now;
+                dtpFecha.Value = fechaValida.Date;
+                cboHora.Text = fechaValida.ToString("hh:mm tt", System.Globalization.CultureInfo.InvariantCulture).ToUpper();
                 cboEstado.SelectedItem = cita.Estado;
 
                 // Seleccionar cliente
@@ -418,9 +456,15 @@ namespace TallerTolucaUI
                 return;
             }
 
-            if (dtpFechaHora.Value < DateTime.Now.AddMinutes(-5))
+            if (!TryObtenerFechaHoraProgramada(out DateTime fechaHora))
             {
-                MostrarMensaje("No se puede programar una cita en el pasado.", true, dtpFechaHora);
+                MostrarMensaje("Ingrese una hora válida (ejemplo: 09:30 AM o 14:30).", true, cboHora);
+                return;
+            }
+
+            if (fechaHora < DateTime.Now.AddMinutes(-5))
+            {
+                MostrarMensaje("No se puede programar una cita en el pasado.", true, dtpFecha);
                 return;
             }
 
@@ -439,14 +483,14 @@ namespace TallerTolucaUI
                 {
                     ClienteID = clienteItem.Value,
                     VehiculoID = vehiculoItem.Value,
-                    FechaHora = dtpFechaHora.Value,
+                    FechaHora = fechaHora,
                     Motivo = motivo,
                     Estado = estado
                 };
 
                 int idCita = _citaBL.ProgramarCita(nuevaCita);
                 MostrarMensaje("Cita programada exitosamente.", false);
-                MessageBox.Show($"Cita programada con éxito para {dtpFechaHora.Value:dd/MM/yyyy hh:mm tt}.", "Cita Programada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"Cita programada con éxito para {fechaHora:dd/MM/yyyy hh:mm tt}.", "Cita Programada", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 LimpiarFormulario();
                 CargarCitas();
@@ -478,6 +522,12 @@ namespace TallerTolucaUI
                 return;
             }
 
+            if (!TryObtenerFechaHoraProgramada(out DateTime fechaHora))
+            {
+                MostrarMensaje("Ingrese una hora válida (ejemplo: 09:30 AM o 14:30).", true, cboHora);
+                return;
+            }
+
             string motivo = txtMotivo.Text.Trim();
             if (string.IsNullOrWhiteSpace(motivo))
             {
@@ -494,7 +544,7 @@ namespace TallerTolucaUI
                     CitaID = _citaSeleccionadaID,
                     ClienteID = clienteItem.Value,
                     VehiculoID = vehiculoItem.Value,
-                    FechaHora = dtpFechaHora.Value,
+                    FechaHora = fechaHora,
                     Motivo = motivo,
                     Estado = estado
                 };
@@ -521,8 +571,11 @@ namespace TallerTolucaUI
                 return;
             }
 
+            TryObtenerFechaHoraProgramada(out DateTime fechaHora);
+            if (fechaHora == DateTime.MinValue) fechaHora = dtpFecha.Value;
+
             DialogResult confirm = MessageBox.Show(
-                $"¿Está seguro de que desea CANCELAR la Cita #{_citaSeleccionadaID} programada para {dtpFechaHora.Value:dd/MM/yyyy}?",
+                $"¿Está seguro de que desea CANCELAR la Cita #{_citaSeleccionadaID} programada para {fechaHora:dd/MM/yyyy hh:mm tt}?",
                 "Confirmar Cancelación de Cita",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question
@@ -556,7 +609,9 @@ namespace TallerTolucaUI
             _citaSeleccionadaID = 0;
             if (cboCliente.Items.Count > 0) cboCliente.SelectedIndex = 0;
             ActualizarComboVehiculos(0);
-            dtpFechaHora.Value = DateTime.Now.AddHours(2);
+            DateTime proxima = DateTime.Now.AddHours(2);
+            dtpFecha.Value = proxima.Date;
+            cboHora.Text = proxima.ToString("hh:mm tt", System.Globalization.CultureInfo.InvariantCulture).ToUpper();
             cboEstado.SelectedItem = "Programada";
             txtMotivo.Clear();
             lblMensaje.Visible = false;

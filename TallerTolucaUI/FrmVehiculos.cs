@@ -402,8 +402,8 @@ namespace TallerTolucaUI
             // Restricción #4 del sistema: Solo vehículos livianos
             if (tipo != "Liviano")
             {
-                MostrarMensaje("Restricción: El taller solo atiende vehículos livianos (no pesados ni motocicletas).", true, cboTipoVehiculo);
-                MessageBox.Show("Restricción del Sistema (Regla #4):\nEl taller mecánico únicamente atiende y registra vehículos livianos.\nNo se admiten vehículos pesados ni motocicletas.", "Restricción de Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MostrarMensaje("Restricción: El taller solo atiende vehículos livianos.", true, cboTipoVehiculo);
+                MessageBox.Show("Restricción del Sistema (Regla #4):\nEl taller mecánico únicamente atiende y registra vehículos livianos.", "Restricción de Vehículos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 

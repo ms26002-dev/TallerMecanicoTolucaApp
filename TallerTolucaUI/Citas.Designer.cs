@@ -17,7 +17,8 @@ namespace TallerTolucaUI
         private System.Windows.Forms.Label lblVehiculo;
         private System.Windows.Forms.ComboBox cboVehiculo;
         private System.Windows.Forms.Label lblFechaHora;
-        private System.Windows.Forms.DateTimePicker dtpFechaHora;
+        private System.Windows.Forms.DateTimePicker dtpFecha;
+        private System.Windows.Forms.ComboBox cboHora;
         private System.Windows.Forms.Label lblEstado;
         private System.Windows.Forms.ComboBox cboEstado;
         private System.Windows.Forms.Label lblMotivo;
@@ -58,7 +59,8 @@ namespace TallerTolucaUI
             lblVehiculo = new System.Windows.Forms.Label();
             cboVehiculo = new System.Windows.Forms.ComboBox();
             lblFechaHora = new System.Windows.Forms.Label();
-            dtpFechaHora = new System.Windows.Forms.DateTimePicker();
+            dtpFecha = new System.Windows.Forms.DateTimePicker();
+            cboHora = new System.Windows.Forms.ComboBox();
             lblEstado = new System.Windows.Forms.Label();
             cboEstado = new System.Windows.Forms.ComboBox();
             lblMotivo = new System.Windows.Forms.Label();
@@ -131,7 +133,7 @@ namespace TallerTolucaUI
             lblHeaderSubtitle.Name = "lblHeaderSubtitle";
             lblHeaderSubtitle.Size = new System.Drawing.Size(450, 15);
             lblHeaderSubtitle.TabIndex = 2;
-            lblHeaderSubtitle.Text = "Sistema de Gestión Automotriz - Radiator Springs | Programación (TMS-31 / TMS-32 / TMS-33)";
+            lblHeaderSubtitle.Text = "Sistema de Gestión Automotriz - Taller Toluca | Programación (TMS-31 / TMS-32 / TMS-33)";
 
             // 
             // btnCerrarForm
@@ -162,7 +164,8 @@ namespace TallerTolucaUI
             pnlFormCard.Controls.Add(lblVehiculo);
             pnlFormCard.Controls.Add(cboVehiculo);
             pnlFormCard.Controls.Add(lblFechaHora);
-            pnlFormCard.Controls.Add(dtpFechaHora);
+            pnlFormCard.Controls.Add(dtpFecha);
+            pnlFormCard.Controls.Add(cboHora);
             pnlFormCard.Controls.Add(lblEstado);
             pnlFormCard.Controls.Add(cboEstado);
             pnlFormCard.Controls.Add(lblMotivo);
@@ -267,17 +270,39 @@ namespace TallerTolucaUI
             lblFechaHora.Text = "Fecha y Hora Programada *";
 
             // 
-            // dtpFechaHora
+            // dtpFecha
             // 
-            dtpFechaHora.CalendarFont = new System.Drawing.Font("Segoe UI", 10F);
-            dtpFechaHora.CustomFormat = "dd/MM/yyyy  hh:mm tt";
-            dtpFechaHora.Font = new System.Drawing.Font("Segoe UI", 10F);
-            dtpFechaHora.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            dtpFechaHora.Location = new System.Drawing.Point(20, 179);
-            dtpFechaHora.Name = "dtpFechaHora";
-            dtpFechaHora.Size = new System.Drawing.Size(320, 25);
-            dtpFechaHora.TabIndex = 2;
-            dtpFechaHora.ValueChanged += Input_TextChanged;
+            dtpFecha.CalendarFont = new System.Drawing.Font("Segoe UI", 10F);
+            dtpFecha.Font = new System.Drawing.Font("Segoe UI", 10F);
+            dtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            dtpFecha.Location = new System.Drawing.Point(20, 179);
+            dtpFecha.Name = "dtpFecha";
+            dtpFecha.Size = new System.Drawing.Size(170, 25);
+            dtpFecha.TabIndex = 2;
+            dtpFecha.ValueChanged += Input_TextChanged;
+
+            // 
+            // cboHora
+            // 
+            cboHora.BackColor = System.Drawing.Color.FromArgb(248, 250, 252);
+            cboHora.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
+            cboHora.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            cboHora.Font = new System.Drawing.Font("Segoe UI", 10F);
+            cboHora.ForeColor = System.Drawing.Color.FromArgb(15, 23, 42);
+            cboHora.Items.AddRange(new object[] {
+                "08:00 AM", "08:30 AM", "09:00 AM", "09:30 AM",
+                "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM",
+                "12:00 PM", "12:30 PM", "01:00 PM", "01:30 PM",
+                "02:00 PM", "02:30 PM", "03:00 PM", "03:30 PM",
+                "04:00 PM", "04:30 PM", "05:00 PM", "05:30 PM",
+                "06:00 PM", "06:30 PM", "07:00 PM"
+            });
+            cboHora.Location = new System.Drawing.Point(198, 179);
+            cboHora.Name = "cboHora";
+            cboHora.Size = new System.Drawing.Size(142, 25);
+            cboHora.TabIndex = 3;
+            cboHora.TextChanged += Input_TextChanged;
+            cboHora.SelectedIndexChanged += Input_TextChanged;
 
             // 
             // lblEstado

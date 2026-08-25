@@ -147,7 +147,7 @@ namespace TallerTolucaUI
             lblHeaderSubtitle.Name = "lblHeaderSubtitle";
             lblHeaderSubtitle.Size = new System.Drawing.Size(460, 15);
             lblHeaderSubtitle.TabIndex = 2;
-            lblHeaderSubtitle.Text = "Sistema de Gestión Automotriz - Radiator Springs | Gestión de Servicios (TMS-16 / TMS-17 / TMS-18)";
+            lblHeaderSubtitle.Text = "Sistema de Gestión Automotriz - Taller Toluca | Gestión de Servicios (TMS-16 / TMS-17 / TMS-18)";
 
             // 
             // btnCerrarForm

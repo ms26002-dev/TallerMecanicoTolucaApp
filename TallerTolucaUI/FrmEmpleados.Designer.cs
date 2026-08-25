@@ -131,7 +131,7 @@ namespace TallerTolucaUI
             lblHeaderSubtitle.Name = "lblHeaderSubtitle";
             lblHeaderSubtitle.Size = new System.Drawing.Size(425, 15);
             lblHeaderSubtitle.TabIndex = 2;
-            lblHeaderSubtitle.Text = "Sistema de Gestión Automotriz - Radiator Springs | Gestión de Personal (TMS-25 / TMS-26)";
+            lblHeaderSubtitle.Text = "Sistema de Gestión Automotriz - Taller Toluca | Gestión de Personal (TMS-25 / TMS-26)";
 
             // 
             // btnCerrarForm
@@ -149,7 +149,7 @@ namespace TallerTolucaUI
             btnCerrarForm.TabIndex = 3;
             btnCerrarForm.Text = "Volver al Menú";
             btnCerrarForm.UseVisualStyleBackColor = false;
-           
+            btnCerrarForm.Click += (s, e) => this.Close();
 
             // 
             // pnlFormCard
@@ -547,7 +547,7 @@ namespace TallerTolucaUI
             MaximizeBox = false;
             Name = "FrmEmpleados";
             StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            Text = "Administración de Empleados - Taller Mecánico Radiator Springs / Toluca";
+            Text = "Administración de Empleados - Taller Toluca";
             Load += FrmEmpleados_Load;
             pnlHeader.ResumeLayout(false);
             pnlHeader.PerformLayout();

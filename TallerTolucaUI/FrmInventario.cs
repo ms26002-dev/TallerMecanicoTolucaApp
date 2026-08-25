@@ -397,7 +397,7 @@ namespace TallerTolucaUI
                     try
                     {
                         _inventarioBL.EliminarRepuesto(repuesto.RepuestoID);
-                        MessageBox.Show("Repuesto eliminado correctamente.", "Taller Radiador Springs", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Repuesto eliminado correctamente.", "Taller Toluca", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         CargarDatos();
                     }
                     catch (Exception ex)
@@ -428,7 +428,7 @@ namespace TallerTolucaUI
                     try
                     {
                         _inventarioBL.EliminarMovimiento(mov.MovimientoID);
-                        MessageBox.Show("Movimiento eliminado correctamente.", "Taller Radiador Springs", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Movimiento eliminado correctamente.", "Taller Toluca", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         CargarDatos();
                     }
                     catch (Exception ex)
@@ -522,12 +522,12 @@ namespace TallerTolucaUI
                         if (esEdicion)
                         {
                             _inventarioBL.ActualizarRepuesto(rep);
-                            MessageBox.Show("Repuesto actualizado con éxito.", "Taller Radiador Springs", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Repuesto actualizado con éxito.", "Taller Toluca", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         else
                         {
                             _inventarioBL.RegistrarRepuesto(rep);
-                            MessageBox.Show("Nuevo repuesto registrado en el catálogo.", "Taller Radiador Springs", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Nuevo repuesto registrado en el catálogo.", "Taller Toluca", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
 
                         modal.DialogResult = DialogResult.OK;
@@ -635,7 +635,7 @@ namespace TallerTolucaUI
                         };
 
                         _inventarioBL.RegistrarMovimiento(mov);
-                        MessageBox.Show("Movimiento de inventario registrado y existencia actualizada con éxito.", "Taller Radiador Springs", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Movimiento de inventario registrado y existencia actualizada con éxito.", "Taller Toluca", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         modal.DialogResult = DialogResult.OK;
                         modal.Close();

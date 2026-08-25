@@ -139,7 +139,7 @@ namespace TallerTolucaUI
             lblHeaderSubtitle.Name = "lblHeaderSubtitle";
             lblHeaderSubtitle.Size = new System.Drawing.Size(445, 15);
             lblHeaderSubtitle.TabIndex = 2;
-            lblHeaderSubtitle.Text = "Sistema de Gestión Automotriz - Radiator Springs | Gestión de Vehículos (TMS-13 / TMS-14)";
+            lblHeaderSubtitle.Text = "Sistema de Gestión Automotriz - Taller Toluca | Gestión de Vehículos (TMS-13 / TMS-14)";
 
             // 
             // btnCerrarForm
@@ -413,7 +413,7 @@ namespace TallerTolucaUI
             cboTipoVehiculo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             cboTipoVehiculo.Font = new System.Drawing.Font("Segoe UI", 10F);
             cboTipoVehiculo.ForeColor = System.Drawing.Color.FromArgb(15, 23, 42);
-            cboTipoVehiculo.Items.AddRange(new object[] { "Liviano", "Pesado", "Motocicleta" });
+            cboTipoVehiculo.Items.AddRange(new object[] { "Liviano" });
             cboTipoVehiculo.Location = new System.Drawing.Point(20, 289);
             cboTipoVehiculo.Name = "cboTipoVehiculo";
             cboTipoVehiculo.Size = new System.Drawing.Size(320, 25);

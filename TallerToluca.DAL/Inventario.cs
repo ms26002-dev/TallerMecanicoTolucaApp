@@ -7,12 +7,31 @@ namespace TallerToluca.DAL
 {
     public class InventarioDAL
     {
+        private void EnsureProveedorColumn(SqlConnection conn)
+        {
+            try
+            {
+                string checkQuery = @"IF NOT EXISTS (
+                                          SELECT * FROM sys.columns 
+                                          WHERE object_id = OBJECT_ID('Repuestos') 
+                                          AND name = 'Proveedor'
+                                      )
+                                      BEGIN
+                                          ALTER TABLE Repuestos ADD Proveedor VARCHAR(100) NULL;
+                                      END";
+                SqlCommand cmd = new SqlCommand(checkQuery, conn);
+                cmd.ExecuteNonQuery();
+            }
+            catch { }
+        }
+
         public List<RepuestoEN> ObtenerRepuestos()
         {
             List<RepuestoEN> lista = new List<RepuestoEN>();
             using (SqlConnection conn = ConexionDAL.ObtenerConexion())
             {
-                string query = "SELECT RepuestoID, Codigo, NombreRepuesto, PrecioUnitario, Existencia FROM Repuestos ORDER BY Codigo ASC";
+                EnsureProveedorColumn(conn);
+                string query = "SELECT RepuestoID, Codigo, NombreRepuesto, ISNULL(Proveedor, '') AS Proveedor, PrecioUnitario, Existencia FROM Repuestos ORDER BY Codigo ASC";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -21,8 +40,9 @@ namespace TallerToluca.DAL
                         lista.Add(new RepuestoEN
                         {
                             RepuestoID = Convert.ToInt32(reader["RepuestoID"]),
-                            Codigo = reader["Codigo"].ToString(),
-                            NombreRepuesto = reader["NombreRepuesto"].ToString(),
+                            Codigo = reader["Codigo"].ToString() ?? "",
+                            NombreRepuesto = reader["NombreRepuesto"].ToString() ?? "",
+                            Proveedor = reader["Proveedor"] != DBNull.Value ? reader["Proveedor"].ToString()! : "",
                             PrecioUnitario = Convert.ToDecimal(reader["PrecioUnitario"]),
                             Existencia = Convert.ToInt32(reader["Existencia"])
                         });
@@ -50,11 +70,11 @@ namespace TallerToluca.DAL
                         {
                             MovimientoID = Convert.ToInt32(reader["MovimientoID"]),
                             RepuestoID = Convert.ToInt32(reader["RepuestoID"]),
-                            NombreRepuesto = reader["NombreRepuesto"].ToString(),
-                            TipoMovimiento = reader["TipoMovimiento"].ToString(),
+                            NombreRepuesto = reader["NombreRepuesto"].ToString() ?? "",
+                            TipoMovimiento = reader["TipoMovimiento"].ToString() ?? "",
                             Cantidad = Convert.ToInt32(reader["Cantidad"]),
                             Fecha = Convert.ToDateTime(reader["Fecha"]),
-                            Motivo = reader["Motivo"] != DBNull.Value ? reader["Motivo"].ToString() : ""
+                            Motivo = reader["Motivo"] != DBNull.Value ? reader["Motivo"].ToString()! : ""
                         });
                     }
                 }
@@ -66,11 +86,13 @@ namespace TallerToluca.DAL
         {
             using (SqlConnection conn = ConexionDAL.ObtenerConexion())
             {
-                string query = @"INSERT INTO Repuestos (Codigo, NombreRepuesto, PrecioUnitario, Existencia) 
-                                 VALUES (@Codigo, @Nombre, @Precio, @Existencia)";
+                EnsureProveedorColumn(conn);
+                string query = @"INSERT INTO Repuestos (Codigo, NombreRepuesto, Proveedor, PrecioUnitario, Existencia) 
+                                 VALUES (@Codigo, @Nombre, @Proveedor, @Precio, @Existencia)";
                 SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@Codigo", repuesto.Codigo);
-                cmd.Parameters.AddWithValue("@Nombre", repuesto.NombreRepuesto);
+                cmd.Parameters.AddWithValue("@Codigo", repuesto.Codigo ?? "");
+                cmd.Parameters.AddWithValue("@Nombre", repuesto.NombreRepuesto ?? "");
+                cmd.Parameters.AddWithValue("@Proveedor", repuesto.Proveedor ?? "");
                 cmd.Parameters.AddWithValue("@Precio", repuesto.PrecioUnitario);
                 cmd.Parameters.AddWithValue("@Existencia", repuesto.Existencia);
                 return cmd.ExecuteNonQuery();
@@ -81,12 +103,14 @@ namespace TallerToluca.DAL
         {
             using (SqlConnection conn = ConexionDAL.ObtenerConexion())
             {
+                EnsureProveedorColumn(conn);
                 string query = @"UPDATE Repuestos 
-                                 SET Codigo = @Codigo, NombreRepuesto = @Nombre, PrecioUnitario = @Precio, Existencia = @Existencia 
+                                 SET Codigo = @Codigo, NombreRepuesto = @Nombre, Proveedor = @Proveedor, PrecioUnitario = @Precio, Existencia = @Existencia 
                                  WHERE RepuestoID = @RepuestoID";
                 SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@Codigo", repuesto.Codigo);
-                cmd.Parameters.AddWithValue("@Nombre", repuesto.NombreRepuesto);
+                cmd.Parameters.AddWithValue("@Codigo", repuesto.Codigo ?? "");
+                cmd.Parameters.AddWithValue("@Nombre", repuesto.NombreRepuesto ?? "");
+                cmd.Parameters.AddWithValue("@Proveedor", repuesto.Proveedor ?? "");
                 cmd.Parameters.AddWithValue("@Precio", repuesto.PrecioUnitario);
                 cmd.Parameters.AddWithValue("@Existencia", repuesto.Existencia);
                 cmd.Parameters.AddWithValue("@RepuestoID", repuesto.RepuestoID);

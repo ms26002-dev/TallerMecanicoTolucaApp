@@ -396,7 +396,7 @@ namespace TallerTolucaUI
             Controls.Add(pnlHeader);
             Name = "FrmInventario";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Gestión de Inventario - Taller Radiador Springs";
+            Text = "Gestión de Inventario - Taller Toluca";
             Load += FrmInventario_Load;
             pnlHeader.ResumeLayout(false);
             pnlHeader.PerformLayout();

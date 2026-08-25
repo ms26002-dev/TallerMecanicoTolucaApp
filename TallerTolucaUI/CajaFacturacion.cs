@@ -22,6 +22,7 @@ namespace TallerTolucaUI
         private List<FacturaEN> _listaFacturas = new List<FacturaEN>();
         private List<OrdenTrabajoEN> _listaOrdenes = new List<OrdenTrabajoEN>();
         private List<ClienteEN> _listaClientes = new List<ClienteEN>();
+        private List<ControlCajaEN> _listaHistorialCajas = new List<ControlCajaEN>();
 
         private FacturaEN? _facturaSeleccionada;
 
@@ -48,9 +49,11 @@ namespace TallerTolucaUI
         {
             CargarLogotipo();
             EstilizarGrid();
+            EstilizarGridHistorial();
             CargarCombos();
             CargarEstadoCaja();
             CargarFacturas();
+            CargarHistorialCajas();
         }
 
         private void CargarLogotipo()
@@ -183,6 +186,151 @@ namespace TallerTolucaUI
                 Width = 85,
                 FillWeight = 30
             });
+        }
+
+        private void EstilizarGridHistorial()
+        {
+            dgvHistorialCajas.BackgroundColor = Color.White;
+            dgvHistorialCajas.BorderStyle = BorderStyle.None;
+            dgvHistorialCajas.GridColor = Color.FromArgb(241, 245, 249);
+            dgvHistorialCajas.RowHeadersVisible = false;
+            dgvHistorialCajas.EnableHeadersVisualStyles = false;
+            dgvHistorialCajas.ColumnHeadersHeight = 36;
+            dgvHistorialCajas.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(241, 245, 249);
+            dgvHistorialCajas.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(71, 85, 105);
+            dgvHistorialCajas.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
+            dgvHistorialCajas.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dgvHistorialCajas.DefaultCellStyle.BackColor = Color.White;
+            dgvHistorialCajas.DefaultCellStyle.ForeColor = Color.FromArgb(30, 41, 59);
+            dgvHistorialCajas.DefaultCellStyle.Font = new Font("Segoe UI", 9.5F);
+            dgvHistorialCajas.DefaultCellStyle.SelectionBackColor = Color.FromArgb(224, 242, 254);
+            dgvHistorialCajas.DefaultCellStyle.SelectionForeColor = Color.FromArgb(15, 23, 42);
+            dgvHistorialCajas.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(248, 250, 252);
+            dgvHistorialCajas.RowTemplate.Height = 34;
+
+            dgvHistorialCajas.AutoGenerateColumns = false;
+            dgvHistorialCajas.Columns.Clear();
+
+            dgvHistorialCajas.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "CajaID",
+                HeaderText = "N° Caja",
+                Width = 70,
+                FillWeight = 25
+            });
+
+            dgvHistorialCajas.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "EstadoBadge",
+                HeaderText = "Estado",
+                Width = 90,
+                FillWeight = 30
+            });
+
+            dgvHistorialCajas.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "FechaAperturaFormateada",
+                HeaderText = "Fecha Apertura",
+                Width = 135,
+                FillWeight = 50
+            });
+
+            dgvHistorialCajas.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "FechaCierreFormateada",
+                HeaderText = "Fecha Cierre",
+                Width = 135,
+                FillWeight = 50
+            });
+
+            dgvHistorialCajas.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "MontoAperturaFormateado",
+                HeaderText = "Monto Inicial",
+                Width = 95,
+                FillWeight = 35
+            });
+
+            dgvHistorialCajas.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "MontoIngresosFormateado",
+                HeaderText = "Cobros",
+                Width = 95,
+                FillWeight = 35
+            });
+
+            dgvHistorialCajas.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "MontoEgresosFormateado",
+                HeaderText = "Egresos",
+                Width = 85,
+                FillWeight = 30
+            });
+
+            dgvHistorialCajas.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "SaldoTotalFormateado",
+                HeaderText = "Saldo Final",
+                Width = 100,
+                FillWeight = 40
+            });
+        }
+
+        private void CargarHistorialCajas()
+        {
+            try
+            {
+                _listaHistorialCajas = _cajaBL.ObtenerHistorialCajas() ?? new List<ControlCajaEN>();
+                AplicarFiltroHistorial();
+            }
+            catch (Exception ex)
+            {
+                MostrarMensaje($"Error al cargar historial de cajas: {ex.Message}", true);
+            }
+        }
+
+        private void AplicarFiltroHistorial()
+        {
+            string filtro = txtBuscarCaja.Text.Trim().ToLower();
+
+            List<ControlCajaEN> filtrados;
+            if (string.IsNullOrEmpty(filtro))
+            {
+                filtrados = _listaHistorialCajas;
+            }
+            else
+            {
+                filtrados = _listaHistorialCajas.Where(c =>
+                    c.CajaID.ToString().Contains(filtro) ||
+                    (c.Estado != null && c.Estado.ToLower().Contains(filtro)) ||
+                    c.FechaAperturaFormateada.ToLower().Contains(filtro) ||
+                    c.FechaCierreFormateada.ToLower().Contains(filtro) ||
+                    c.MontoAperturaFormateado.Contains(filtro) ||
+                    c.SaldoTotalFormateado.Contains(filtro)
+                ).ToList();
+            }
+
+            dgvHistorialCajas.DataSource = null;
+            dgvHistorialCajas.DataSource = filtrados;
+            lblTotalSesiones.Text = $"Total sesiones registradas: {filtrados.Count}";
+        }
+
+        private void TxtBuscarCaja_TextChanged(object? sender, EventArgs e)
+        {
+            AplicarFiltroHistorial();
+        }
+
+        private void BtnRefrescarHistorial_Click(object? sender, EventArgs e)
+        {
+            txtBuscarCaja.Clear();
+            CargarHistorialCajas();
+            MostrarMensaje("Historial de cajas actualizado.", false);
+        }
+
+        private void BtnHistorialCajas_Click(object? sender, EventArgs e)
+        {
+            tabControlFinanciero.SelectedTab = tabHistorialCajas;
+            CargarHistorialCajas();
         }
 
         private void CargarEstadoCaja()
@@ -383,7 +531,7 @@ namespace TallerTolucaUI
         {
             string promptValue = Microsoft.VisualBasic.Interaction.InputBox(
                 "Ingrese el monto inicial de apertura de caja en efectivo ($):",
-                "Apertura de Caja Diaria - Radiator Springs",
+                "Apertura de Caja Diaria - Taller Toluca",
                 "500.00"
             );
 
@@ -401,6 +549,7 @@ namespace TallerTolucaUI
                 int nuevaCajaID = _cajaBL.AbrirCaja(montoApertura);
                 MessageBox.Show($"Caja #{nuevaCajaID} abierta con éxito.\nMonto inicial: {montoApertura:C2}", "Apertura Exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 CargarEstadoCaja();
+                CargarHistorialCajas();
             }
             catch (Exception ex)
             {
@@ -435,6 +584,7 @@ namespace TallerTolucaUI
                     _cajaBL.CerrarCaja(_cajaActiva.CajaID);
                     MessageBox.Show("El cierre diario de caja ha sido registrado exitosamente.", "Caja Cerrada", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     CargarEstadoCaja();
+                    CargarHistorialCajas();
                     LimpiarFormulario();
                 }
                 catch (Exception ex)
@@ -494,7 +644,7 @@ namespace TallerTolucaUI
 
                 string msgTicket = $"========================================\n" +
                                    $"       TALLER MECÁNICO TOLUCA\n" +
-                                   $"        Radiator Springs Motors\n" +
+                                   $"            Taller Toluca\n" +
                                    $"========================================\n" +
                                    $"Factura N°: #{nuevaFacturaID}\n" +
                                    $"Orden N°:   #{ordenItem.Value}\n" +
@@ -513,6 +663,7 @@ namespace TallerTolucaUI
                 LimpiarFormulario();
                 CargarEstadoCaja();
                 CargarFacturas();
+                CargarHistorialCajas();
             }
             catch (Exception ex)
             {
@@ -531,7 +682,7 @@ namespace TallerTolucaUI
 
             string ticket = $"========================================\n" +
                             $"       TALLER MECÁNICO TOLUCA\n" +
-                            $"        Radiator Springs Motors\n" +
+                            $"            Taller Toluca\n" +
                             $"========================================\n" +
                             $"Factura N°: #{_facturaSeleccionada.FacturaID}\n" +
                             $"Orden N°:   #{_facturaSeleccionada.OrdenID}\n" +

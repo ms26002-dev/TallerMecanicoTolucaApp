@@ -16,6 +16,7 @@ namespace TallerTolucaUI
         private System.Windows.Forms.Label lblSaldoTotalInfo;
         private System.Windows.Forms.Button btnAbrirCaja;
         private System.Windows.Forms.Button btnCerrarCaja;
+        private System.Windows.Forms.Button btnHistorialCajas;
 
         private System.Windows.Forms.Panel pnlFormCard;
         private System.Windows.Forms.Label lblFormTitulo;
@@ -37,6 +38,9 @@ namespace TallerTolucaUI
         private System.Windows.Forms.Button btnArqueo;
 
         private System.Windows.Forms.Panel pnlTableCard;
+        private System.Windows.Forms.TabControl tabControlFinanciero;
+        private System.Windows.Forms.TabPage tabFacturas;
+        private System.Windows.Forms.TabPage tabHistorialCajas;
         private System.Windows.Forms.Label lblTableTitulo;
         private System.Windows.Forms.Label lblBuscar;
         private System.Windows.Forms.TextBox txtBuscar;
@@ -44,6 +48,12 @@ namespace TallerTolucaUI
         private System.Windows.Forms.Label lblTotalFacturas;
         private System.Windows.Forms.Label lblTotalRecaudado;
         private System.Windows.Forms.DataGridView dgvFacturas;
+        private System.Windows.Forms.Label lblTableTituloCaja;
+        private System.Windows.Forms.Label lblBuscarCaja;
+        private System.Windows.Forms.TextBox txtBuscarCaja;
+        private System.Windows.Forms.Button btnRefrescarHistorial;
+        private System.Windows.Forms.Label lblTotalSesiones;
+        private System.Windows.Forms.DataGridView dgvHistorialCajas;
 
         protected override void Dispose(bool disposing)
         {
@@ -66,6 +76,7 @@ namespace TallerTolucaUI
             lblSaldoTotalInfo = new System.Windows.Forms.Label();
             btnAbrirCaja = new System.Windows.Forms.Button();
             btnCerrarCaja = new System.Windows.Forms.Button();
+            btnHistorialCajas = new System.Windows.Forms.Button();
 
             pnlFormCard = new System.Windows.Forms.Panel();
             lblFormTitulo = new System.Windows.Forms.Label();
@@ -87,6 +98,9 @@ namespace TallerTolucaUI
             btnArqueo = new System.Windows.Forms.Button();
 
             pnlTableCard = new System.Windows.Forms.Panel();
+            tabControlFinanciero = new System.Windows.Forms.TabControl();
+            tabFacturas = new System.Windows.Forms.TabPage();
+            tabHistorialCajas = new System.Windows.Forms.TabPage();
             lblTableTitulo = new System.Windows.Forms.Label();
             lblBuscar = new System.Windows.Forms.Label();
             txtBuscar = new System.Windows.Forms.TextBox();
@@ -94,13 +108,23 @@ namespace TallerTolucaUI
             lblTotalFacturas = new System.Windows.Forms.Label();
             lblTotalRecaudado = new System.Windows.Forms.Label();
             dgvFacturas = new System.Windows.Forms.DataGridView();
+            lblTableTituloCaja = new System.Windows.Forms.Label();
+            lblBuscarCaja = new System.Windows.Forms.Label();
+            txtBuscarCaja = new System.Windows.Forms.TextBox();
+            btnRefrescarHistorial = new System.Windows.Forms.Button();
+            lblTotalSesiones = new System.Windows.Forms.Label();
+            dgvHistorialCajas = new System.Windows.Forms.DataGridView();
 
             pnlHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picLogoHeader).BeginInit();
             pnlStatusCard.SuspendLayout();
             pnlFormCard.SuspendLayout();
             pnlTableCard.SuspendLayout();
+            tabControlFinanciero.SuspendLayout();
+            tabFacturas.SuspendLayout();
+            tabHistorialCajas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvFacturas).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvHistorialCajas).BeginInit();
             SuspendLayout();
 
             // 
@@ -150,7 +174,7 @@ namespace TallerTolucaUI
             lblHeaderSubtitle.Name = "lblHeaderSubtitle";
             lblHeaderSubtitle.Size = new System.Drawing.Size(495, 15);
             lblHeaderSubtitle.TabIndex = 2;
-            lblHeaderSubtitle.Text = "Sistema de Gestión Automotriz - Radiator Springs | Módulo Financiero (TMS-23 / TMS-24 / TMS-25)";
+            lblHeaderSubtitle.Text = "Sistema de Gestión Automotriz - Taller Toluca | Módulo Financiero (TMS-23 / TMS-24 / TMS-25)";
 
             // 
             // btnCerrarForm
@@ -181,6 +205,7 @@ namespace TallerTolucaUI
             pnlStatusCard.Controls.Add(lblSaldoTotalInfo);
             pnlStatusCard.Controls.Add(btnAbrirCaja);
             pnlStatusCard.Controls.Add(btnCerrarCaja);
+            pnlStatusCard.Controls.Add(btnHistorialCajas);
             pnlStatusCard.Location = new System.Drawing.Point(20, 78);
             pnlStatusCard.Name = "pnlStatusCard";
             pnlStatusCard.Size = new System.Drawing.Size(1040, 64);
@@ -191,9 +216,9 @@ namespace TallerTolucaUI
             // lblEstadoCajaBadge
             // 
             lblEstadoCajaBadge.AutoSize = true;
-            lblEstadoCajaBadge.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            lblEstadoCajaBadge.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
             lblEstadoCajaBadge.ForeColor = System.Drawing.Color.FromArgb(2, 132, 199);
-            lblEstadoCajaBadge.Location = new System.Drawing.Point(18, 22);
+            lblEstadoCajaBadge.Location = new System.Drawing.Point(15, 22);
             lblEstadoCajaBadge.Name = "lblEstadoCajaBadge";
             lblEstadoCajaBadge.Size = new System.Drawing.Size(155, 19);
             lblEstadoCajaBadge.TabIndex = 0;
@@ -203,9 +228,9 @@ namespace TallerTolucaUI
             // lblMontoAperturaInfo
             // 
             lblMontoAperturaInfo.AutoSize = true;
-            lblMontoAperturaInfo.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            lblMontoAperturaInfo.Font = new System.Drawing.Font("Segoe UI", 9F);
             lblMontoAperturaInfo.ForeColor = System.Drawing.Color.FromArgb(71, 85, 105);
-            lblMontoAperturaInfo.Location = new System.Drawing.Point(210, 23);
+            lblMontoAperturaInfo.Location = new System.Drawing.Point(190, 23);
             lblMontoAperturaInfo.Name = "lblMontoAperturaInfo";
             lblMontoAperturaInfo.Size = new System.Drawing.Size(111, 17);
             lblMontoAperturaInfo.TabIndex = 1;
@@ -215,9 +240,9 @@ namespace TallerTolucaUI
             // lblIngresosInfo
             // 
             lblIngresosInfo.AutoSize = true;
-            lblIngresosInfo.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            lblIngresosInfo.Font = new System.Drawing.Font("Segoe UI", 9F);
             lblIngresosInfo.ForeColor = System.Drawing.Color.FromArgb(71, 85, 105);
-            lblIngresosInfo.Location = new System.Drawing.Point(360, 23);
+            lblIngresosInfo.Location = new System.Drawing.Point(325, 23);
             lblIngresosInfo.Name = "lblIngresosInfo";
             lblIngresosInfo.Size = new System.Drawing.Size(110, 17);
             lblIngresosInfo.TabIndex = 2;
@@ -227,9 +252,9 @@ namespace TallerTolucaUI
             // lblSaldoTotalInfo
             // 
             lblSaldoTotalInfo.AutoSize = true;
-            lblSaldoTotalInfo.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Bold);
+            lblSaldoTotalInfo.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             lblSaldoTotalInfo.ForeColor = System.Drawing.Color.FromArgb(15, 23, 42);
-            lblSaldoTotalInfo.Location = new System.Drawing.Point(510, 21);
+            lblSaldoTotalInfo.Location = new System.Drawing.Point(450, 22);
             lblSaldoTotalInfo.Name = "lblSaldoTotalInfo";
             lblSaldoTotalInfo.Size = new System.Drawing.Size(149, 19);
             lblSaldoTotalInfo.TabIndex = 3;
@@ -245,9 +270,9 @@ namespace TallerTolucaUI
             btnAbrirCaja.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnAbrirCaja.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             btnAbrirCaja.ForeColor = System.Drawing.Color.White;
-            btnAbrirCaja.Location = new System.Drawing.Point(740, 14);
+            btnAbrirCaja.Location = new System.Drawing.Point(630, 14);
             btnAbrirCaja.Name = "btnAbrirCaja";
-            btnAbrirCaja.Size = new System.Drawing.Size(130, 36);
+            btnAbrirCaja.Size = new System.Drawing.Size(120, 36);
             btnAbrirCaja.TabIndex = 4;
             btnAbrirCaja.Text = "Abrir Caja...";
             btnAbrirCaja.UseVisualStyleBackColor = false;
@@ -263,13 +288,31 @@ namespace TallerTolucaUI
             btnCerrarCaja.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnCerrarCaja.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             btnCerrarCaja.ForeColor = System.Drawing.Color.White;
-            btnCerrarCaja.Location = new System.Drawing.Point(880, 14);
+            btnCerrarCaja.Location = new System.Drawing.Point(760, 14);
             btnCerrarCaja.Name = "btnCerrarCaja";
-            btnCerrarCaja.Size = new System.Drawing.Size(145, 36);
+            btnCerrarCaja.Size = new System.Drawing.Size(125, 36);
             btnCerrarCaja.TabIndex = 5;
             btnCerrarCaja.Text = "Cierre / Arqueo";
             btnCerrarCaja.UseVisualStyleBackColor = false;
             btnCerrarCaja.Click += btnCerrarCaja_Click;
+
+            // 
+            // btnHistorialCajas
+            // 
+            btnHistorialCajas.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            btnHistorialCajas.BackColor = System.Drawing.Color.FromArgb(71, 85, 105);
+            btnHistorialCajas.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnHistorialCajas.FlatAppearance.BorderSize = 0;
+            btnHistorialCajas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnHistorialCajas.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            btnHistorialCajas.ForeColor = System.Drawing.Color.White;
+            btnHistorialCajas.Location = new System.Drawing.Point(895, 14);
+            btnHistorialCajas.Name = "btnHistorialCajas";
+            btnHistorialCajas.Size = new System.Drawing.Size(130, 36);
+            btnHistorialCajas.TabIndex = 6;
+            btnHistorialCajas.Text = "📋 Historial Cajas";
+            btnHistorialCajas.UseVisualStyleBackColor = false;
+            btnHistorialCajas.Click += BtnHistorialCajas_Click;
 
             // 
             // pnlFormCard
@@ -539,13 +582,7 @@ namespace TallerTolucaUI
             // 
             pnlTableCard.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             pnlTableCard.BackColor = System.Drawing.Color.White;
-            pnlTableCard.Controls.Add(lblTableTitulo);
-            pnlTableCard.Controls.Add(lblBuscar);
-            pnlTableCard.Controls.Add(txtBuscar);
-            pnlTableCard.Controls.Add(btnRefrescar);
-            pnlTableCard.Controls.Add(lblTotalFacturas);
-            pnlTableCard.Controls.Add(lblTotalRecaudado);
-            pnlTableCard.Controls.Add(dgvFacturas);
+            pnlTableCard.Controls.Add(tabControlFinanciero);
             pnlTableCard.Location = new System.Drawing.Point(415, 152);
             pnlTableCard.Name = "pnlTableCard";
             pnlTableCard.Size = new System.Drawing.Size(645, 508);
@@ -553,12 +590,60 @@ namespace TallerTolucaUI
             pnlTableCard.Paint += PnlCard_Paint;
 
             // 
+            // tabControlFinanciero
+            // 
+            tabControlFinanciero.Controls.Add(tabFacturas);
+            tabControlFinanciero.Controls.Add(tabHistorialCajas);
+            tabControlFinanciero.Dock = System.Windows.Forms.DockStyle.Fill;
+            tabControlFinanciero.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
+            tabControlFinanciero.Location = new System.Drawing.Point(0, 0);
+            tabControlFinanciero.Name = "tabControlFinanciero";
+            tabControlFinanciero.SelectedIndex = 0;
+            tabControlFinanciero.Size = new System.Drawing.Size(645, 508);
+            tabControlFinanciero.TabIndex = 0;
+
+            // 
+            // tabFacturas
+            // 
+            tabFacturas.BackColor = System.Drawing.Color.White;
+            tabFacturas.Controls.Add(lblTableTitulo);
+            tabFacturas.Controls.Add(lblBuscar);
+            tabFacturas.Controls.Add(txtBuscar);
+            tabFacturas.Controls.Add(btnRefrescar);
+            tabFacturas.Controls.Add(lblTotalFacturas);
+            tabFacturas.Controls.Add(lblTotalRecaudado);
+            tabFacturas.Controls.Add(dgvFacturas);
+            tabFacturas.Location = new System.Drawing.Point(4, 26);
+            tabFacturas.Name = "tabFacturas";
+            tabFacturas.Padding = new System.Windows.Forms.Padding(3);
+            tabFacturas.Size = new System.Drawing.Size(637, 478);
+            tabFacturas.TabIndex = 0;
+            tabFacturas.Text = "📄 Facturas Emitidas";
+
+            // 
+            // tabHistorialCajas
+            // 
+            tabHistorialCajas.BackColor = System.Drawing.Color.White;
+            tabHistorialCajas.Controls.Add(lblTableTituloCaja);
+            tabHistorialCajas.Controls.Add(lblBuscarCaja);
+            tabHistorialCajas.Controls.Add(txtBuscarCaja);
+            tabHistorialCajas.Controls.Add(btnRefrescarHistorial);
+            tabHistorialCajas.Controls.Add(lblTotalSesiones);
+            tabHistorialCajas.Controls.Add(dgvHistorialCajas);
+            tabHistorialCajas.Location = new System.Drawing.Point(4, 26);
+            tabHistorialCajas.Name = "tabHistorialCajas";
+            tabHistorialCajas.Padding = new System.Windows.Forms.Padding(3);
+            tabHistorialCajas.Size = new System.Drawing.Size(637, 478);
+            tabHistorialCajas.TabIndex = 1;
+            tabHistorialCajas.Text = "📊 Historial de Cajas";
+
+            // 
             // lblTableTitulo
             // 
             lblTableTitulo.AutoSize = true;
             lblTableTitulo.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             lblTableTitulo.ForeColor = System.Drawing.Color.FromArgb(30, 41, 59);
-            lblTableTitulo.Location = new System.Drawing.Point(20, 16);
+            lblTableTitulo.Location = new System.Drawing.Point(15, 12);
             lblTableTitulo.Name = "lblTableTitulo";
             lblTableTitulo.Size = new System.Drawing.Size(262, 20);
             lblTableTitulo.TabIndex = 0;
@@ -570,7 +655,7 @@ namespace TallerTolucaUI
             lblBuscar.AutoSize = true;
             lblBuscar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             lblBuscar.ForeColor = System.Drawing.Color.FromArgb(51, 65, 85);
-            lblBuscar.Location = new System.Drawing.Point(20, 48);
+            lblBuscar.Location = new System.Drawing.Point(15, 44);
             lblBuscar.Name = "lblBuscar";
             lblBuscar.Size = new System.Drawing.Size(47, 15);
             lblBuscar.TabIndex = 1;
@@ -584,7 +669,7 @@ namespace TallerTolucaUI
             txtBuscar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             txtBuscar.Font = new System.Drawing.Font("Segoe UI", 10F);
             txtBuscar.ForeColor = System.Drawing.Color.FromArgb(15, 23, 42);
-            txtBuscar.Location = new System.Drawing.Point(73, 44);
+            txtBuscar.Location = new System.Drawing.Point(68, 40);
             txtBuscar.Name = "txtBuscar";
             txtBuscar.PlaceholderText = "Filtrar por N° factura, N° orden, cliente o placa...";
             txtBuscar.Size = new System.Drawing.Size(430, 25);
@@ -601,7 +686,7 @@ namespace TallerTolucaUI
             btnRefrescar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnRefrescar.Font = new System.Drawing.Font("Segoe UI", 8.5F, System.Drawing.FontStyle.Bold);
             btnRefrescar.ForeColor = System.Drawing.Color.FromArgb(71, 85, 105);
-            btnRefrescar.Location = new System.Drawing.Point(515, 43);
+            btnRefrescar.Location = new System.Drawing.Point(510, 39);
             btnRefrescar.Name = "btnRefrescar";
             btnRefrescar.Size = new System.Drawing.Size(110, 27);
             btnRefrescar.TabIndex = 1;
@@ -616,7 +701,7 @@ namespace TallerTolucaUI
             lblTotalFacturas.AutoSize = true;
             lblTotalFacturas.Font = new System.Drawing.Font("Segoe UI", 8.5F);
             lblTotalFacturas.ForeColor = System.Drawing.Color.FromArgb(100, 116, 139);
-            lblTotalFacturas.Location = new System.Drawing.Point(20, 477);
+            lblTotalFacturas.Location = new System.Drawing.Point(15, 450);
             lblTotalFacturas.Name = "lblTotalFacturas";
             lblTotalFacturas.Size = new System.Drawing.Size(155, 15);
             lblTotalFacturas.TabIndex = 2;
@@ -629,7 +714,7 @@ namespace TallerTolucaUI
             lblTotalRecaudado.AutoSize = true;
             lblTotalRecaudado.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
             lblTotalRecaudado.ForeColor = System.Drawing.Color.FromArgb(15, 23, 42);
-            lblTotalRecaudado.Location = new System.Drawing.Point(430, 475);
+            lblTotalRecaudado.Location = new System.Drawing.Point(425, 448);
             lblTotalRecaudado.Name = "lblTotalRecaudado";
             lblTotalRecaudado.Size = new System.Drawing.Size(195, 17);
             lblTotalRecaudado.TabIndex = 3;
@@ -646,16 +731,106 @@ namespace TallerTolucaUI
             dgvFacturas.BackgroundColor = System.Drawing.Color.White;
             dgvFacturas.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dgvFacturas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvFacturas.Location = new System.Drawing.Point(20, 80);
+            dgvFacturas.Location = new System.Drawing.Point(15, 75);
             dgvFacturas.MultiSelect = false;
             dgvFacturas.Name = "dgvFacturas";
             dgvFacturas.ReadOnly = true;
             dgvFacturas.RowHeadersVisible = false;
             dgvFacturas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            dgvFacturas.Size = new System.Drawing.Size(605, 385);
+            dgvFacturas.Size = new System.Drawing.Size(605, 365);
             dgvFacturas.TabIndex = 2;
             dgvFacturas.CellClick += DgvFacturas_CellClick;
             dgvFacturas.SelectionChanged += DgvFacturas_SelectionChanged;
+
+            // 
+            // lblTableTituloCaja
+            // 
+            lblTableTituloCaja.AutoSize = true;
+            lblTableTituloCaja.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            lblTableTituloCaja.ForeColor = System.Drawing.Color.FromArgb(30, 41, 59);
+            lblTableTituloCaja.Location = new System.Drawing.Point(15, 12);
+            lblTableTituloCaja.Name = "lblTableTituloCaja";
+            lblTableTituloCaja.Size = new System.Drawing.Size(320, 20);
+            lblTableTituloCaja.TabIndex = 0;
+            lblTableTituloCaja.Text = "Historial de Aperturas y Cierres de Caja";
+
+            // 
+            // lblBuscarCaja
+            // 
+            lblBuscarCaja.AutoSize = true;
+            lblBuscarCaja.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            lblBuscarCaja.ForeColor = System.Drawing.Color.FromArgb(51, 65, 85);
+            lblBuscarCaja.Location = new System.Drawing.Point(15, 44);
+            lblBuscarCaja.Name = "lblBuscarCaja";
+            lblBuscarCaja.Size = new System.Drawing.Size(47, 15);
+            lblBuscarCaja.TabIndex = 1;
+            lblBuscarCaja.Text = "Buscar:";
+
+            // 
+            // txtBuscarCaja
+            // 
+            txtBuscarCaja.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            txtBuscarCaja.BackColor = System.Drawing.Color.FromArgb(248, 250, 252);
+            txtBuscarCaja.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            txtBuscarCaja.Font = new System.Drawing.Font("Segoe UI", 10F);
+            txtBuscarCaja.ForeColor = System.Drawing.Color.FromArgb(15, 23, 42);
+            txtBuscarCaja.Location = new System.Drawing.Point(68, 40);
+            txtBuscarCaja.Name = "txtBuscarCaja";
+            txtBuscarCaja.PlaceholderText = "Filtrar por N° caja, fecha o estado (Abierta / Cerrada)...";
+            txtBuscarCaja.Size = new System.Drawing.Size(430, 25);
+            txtBuscarCaja.TabIndex = 2;
+            txtBuscarCaja.TextChanged += TxtBuscarCaja_TextChanged;
+
+            // 
+            // btnRefrescarHistorial
+            // 
+            btnRefrescarHistorial.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            btnRefrescarHistorial.BackColor = System.Drawing.Color.FromArgb(241, 245, 249);
+            btnRefrescarHistorial.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnRefrescarHistorial.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(203, 213, 225);
+            btnRefrescarHistorial.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnRefrescarHistorial.Font = new System.Drawing.Font("Segoe UI", 8.5F, System.Drawing.FontStyle.Bold);
+            btnRefrescarHistorial.ForeColor = System.Drawing.Color.FromArgb(71, 85, 105);
+            btnRefrescarHistorial.Location = new System.Drawing.Point(510, 39);
+            btnRefrescarHistorial.Name = "btnRefrescarHistorial";
+            btnRefrescarHistorial.Size = new System.Drawing.Size(110, 27);
+            btnRefrescarHistorial.TabIndex = 3;
+            btnRefrescarHistorial.Text = "Refrescar";
+            btnRefrescarHistorial.UseVisualStyleBackColor = false;
+            btnRefrescarHistorial.Click += BtnRefrescarHistorial_Click;
+
+            // 
+            // lblTotalSesiones
+            // 
+            lblTotalSesiones.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            lblTotalSesiones.AutoSize = true;
+            lblTotalSesiones.Font = new System.Drawing.Font("Segoe UI", 8.5F);
+            lblTotalSesiones.ForeColor = System.Drawing.Color.FromArgb(100, 116, 139);
+            lblTotalSesiones.Location = new System.Drawing.Point(15, 450);
+            lblTotalSesiones.Name = "lblTotalSesiones";
+            lblTotalSesiones.Size = new System.Drawing.Size(160, 15);
+            lblTotalSesiones.TabIndex = 4;
+            lblTotalSesiones.Text = "Total sesiones registradas: 0";
+
+            // 
+            // dgvHistorialCajas
+            // 
+            dgvHistorialCajas.AllowUserToAddRows = false;
+            dgvHistorialCajas.AllowUserToDeleteRows = false;
+            dgvHistorialCajas.AllowUserToResizeRows = false;
+            dgvHistorialCajas.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            dgvHistorialCajas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dgvHistorialCajas.BackgroundColor = System.Drawing.Color.White;
+            dgvHistorialCajas.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dgvHistorialCajas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvHistorialCajas.Location = new System.Drawing.Point(15, 75);
+            dgvHistorialCajas.MultiSelect = false;
+            dgvHistorialCajas.Name = "dgvHistorialCajas";
+            dgvHistorialCajas.ReadOnly = true;
+            dgvHistorialCajas.RowHeadersVisible = false;
+            dgvHistorialCajas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            dgvHistorialCajas.Size = new System.Drawing.Size(605, 365);
+            dgvHistorialCajas.TabIndex = 5;
 
             // 
             // FrmCajaFacturacion
@@ -681,8 +856,13 @@ namespace TallerTolucaUI
             pnlFormCard.ResumeLayout(false);
             pnlFormCard.PerformLayout();
             pnlTableCard.ResumeLayout(false);
-            pnlTableCard.PerformLayout();
+            tabControlFinanciero.ResumeLayout(false);
+            tabFacturas.ResumeLayout(false);
+            tabFacturas.PerformLayout();
+            tabHistorialCajas.ResumeLayout(false);
+            tabHistorialCajas.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvFacturas).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvHistorialCajas).EndInit();
             ResumeLayout(false);
         }
     }

@@ -127,7 +127,7 @@ namespace TallerTolucaUI
             lblHeaderSubtitle.Name = "lblHeaderSubtitle";
             lblHeaderSubtitle.Size = new System.Drawing.Size(395, 15);
             lblHeaderSubtitle.TabIndex = 2;
-            lblHeaderSubtitle.Text = "Sistema de Gestión Automotriz - Radiator Springs | Módulo de Clientes";
+            lblHeaderSubtitle.Text = "Sistema de Gestión Automotriz - Taller Toluca | Módulo de Clientes";
 
             // 
             // btnCerrarForm
@@ -503,7 +503,7 @@ namespace TallerTolucaUI
             MaximizeBox = false;
             Name = "FrmClientes";
             StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            Text = "Administración de Clientes - Taller Mecánico Radiator Springs / Toluca";
+            Text = "Administración de Clientes - Taller Toluca";
             Load += FrmClientes_Load;
             pnlHeader.ResumeLayout(false);
             pnlHeader.PerformLayout();

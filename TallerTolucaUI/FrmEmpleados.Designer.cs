@@ -149,7 +149,7 @@ namespace TallerTolucaUI
             btnCerrarForm.TabIndex = 3;
             btnCerrarForm.Text = "Volver al Menú";
             btnCerrarForm.UseVisualStyleBackColor = false;
-            btnCerrarForm.Click += (s, e) => this.Close();
+           
 
             // 
             // pnlFormCard

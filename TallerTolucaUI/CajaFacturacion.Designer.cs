@@ -486,7 +486,7 @@ namespace TallerTolucaUI
             // 
             // btnVerTicket
             // 
-            btnVerTicket.BackColor = System.Drawing.Color.FromArgb(13, 148, 136);
+            btnVerTicket.BackColor = System.Drawing.Color.FromArgb(100, 116, 139);
             btnVerTicket.Cursor = System.Windows.Forms.Cursors.Hand;
             btnVerTicket.FlatAppearance.BorderSize = 0;
             btnVerTicket.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -520,7 +520,7 @@ namespace TallerTolucaUI
             // 
             // btnArqueo
             // 
-            btnArqueo.BackColor = System.Drawing.Color.FromArgb(180, 83, 9);
+            btnArqueo.BackColor = System.Drawing.Color.FromArgb(100, 116, 139);
             btnArqueo.Cursor = System.Windows.Forms.Cursors.Hand;
             btnArqueo.FlatAppearance.BorderSize = 0;
             btnArqueo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;

@@ -24,10 +24,56 @@ namespace TallerTolucaUI
 
         private void FrmInventario_Load(object sender, EventArgs e)
         {
+            CargarLogotipo();
             ConfigurarColumnasGrids();
             cboFiltroStock.SelectedIndex = 0;
             cboFiltroTipoMov.SelectedIndex = 0;
             CargarDatos();
+        }
+
+        private void CargarLogotipo()
+        {
+            try
+            {
+                string basePath = AppDomain.CurrentDomain.BaseDirectory;
+                string[] possiblePaths = new string[]
+                {
+                    System.IO.Path.Combine(basePath, "Assets", "logo.png"),
+                    System.IO.Path.Combine(basePath, "image1.png"),
+                    System.IO.Path.Combine(basePath, "..", "..", "..", "doc_extracted", "image1.png")
+                };
+
+                foreach (string path in possiblePaths)
+                {
+                    if (System.IO.File.Exists(path))
+                    {
+                        using (var img = Image.FromFile(path))
+                        {
+                            picLogoHeader.Image = new Bitmap(img);
+                        }
+                        return;
+                    }
+                }
+
+                // Generar icono estilizado si no se encuentra el logo
+                var iconBmp = new Bitmap(48, 46);
+                using (var g = Graphics.FromImage(iconBmp))
+                {
+                    g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+                    using (var bgBrush = new SolidBrush(Color.FromArgb(224, 242, 254)))
+                    {
+                        g.FillEllipse(bgBrush, 2, 2, 44, 42);
+                    }
+                    using (var pen = new Pen(Color.FromArgb(2, 132, 199), 2))
+                    {
+                        g.DrawEllipse(pen, 2, 2, 44, 42);
+                        g.DrawLine(pen, 16, 16, 32, 30);
+                        g.DrawLine(pen, 32, 16, 16, 30);
+                    }
+                }
+                picLogoHeader.Image = iconBmp;
+            }
+            catch { }
         }
 
         private void ConfigurarColumnasGrids()
@@ -56,7 +102,15 @@ namespace TallerTolucaUI
                 Name = "NombreRepuesto",
                 HeaderText = "Nombre del Repuesto",
                 DataPropertyName = "NombreRepuesto",
-                FillWeight = 200
+                FillWeight = 180
+            });
+
+            dgvRepuestos.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Proveedor",
+                HeaderText = "Proveedor",
+                DataPropertyName = "Proveedor",
+                FillWeight = 130
             });
 
             dgvRepuestos.Columns.Add(new DataGridViewTextBoxColumn
@@ -240,7 +294,8 @@ namespace TallerTolucaUI
             if (!string.IsNullOrEmpty(texto))
             {
                 query = query.Where(r => (r.Codigo != null && r.Codigo.IndexOf(texto, StringComparison.OrdinalIgnoreCase) >= 0) ||
-                                         (r.NombreRepuesto != null && r.NombreRepuesto.IndexOf(texto, StringComparison.OrdinalIgnoreCase) >= 0));
+                                         (r.NombreRepuesto != null && r.NombreRepuesto.IndexOf(texto, StringComparison.OrdinalIgnoreCase) >= 0) ||
+                                         (r.Proveedor != null && r.Proveedor.IndexOf(texto, StringComparison.OrdinalIgnoreCase) >= 0));
             }
 
             string filtroStock = cboFiltroStock.SelectedItem?.ToString() ?? "";
@@ -446,29 +501,47 @@ namespace TallerTolucaUI
             using (Form modal = new Form())
             {
                 modal.Text = esEdicion ? "Editar Repuesto" : "Nuevo Repuesto";
-                modal.Size = new Size(460, 360);
+                modal.Size = new Size(460, 430);
                 modal.StartPosition = FormStartPosition.CenterParent;
                 modal.FormBorderStyle = FormBorderStyle.FixedDialog;
                 modal.MaximizeBox = false;
                 modal.MinimizeBox = false;
                 modal.BackColor = Color.FromArgb(240, 248, 255);
 
-                Label lblCode = new Label { Text = "Código del Repuesto:", Location = new Point(25, 20), AutoSize = true, Font = new Font("Segoe UI", 9.5F, FontStyle.Bold) };
-                TextBox txtCode = new TextBox { Location = new Point(25, 42), Size = new Size(390, 26), Font = new Font("Segoe UI", 10F), Text = esEdicion ? repuestoExistente.Codigo : $"REP-{Guid.NewGuid().ToString().Substring(0, 4).ToUpper()}" };
+                Label lblCode = new Label { Text = "Código del Repuesto:", Location = new Point(25, 15), AutoSize = true, Font = new Font("Segoe UI", 9.5F, FontStyle.Bold) };
+                TextBox txtCode = new TextBox { Location = new Point(25, 37), Size = new Size(390, 26), Font = new Font("Segoe UI", 10F), Text = esEdicion ? repuestoExistente.Codigo : $"REP-{Guid.NewGuid().ToString().Substring(0, 4).ToUpper()}" };
 
-                Label lblName = new Label { Text = "Nombre del Repuesto:", Location = new Point(25, 80), AutoSize = true, Font = new Font("Segoe UI", 9.5F, FontStyle.Bold) };
-                TextBox txtName = new TextBox { Location = new Point(25, 102), Size = new Size(390, 26), Font = new Font("Segoe UI", 10F), Text = esEdicion ? repuestoExistente.NombreRepuesto : "" };
+                Label lblName = new Label { Text = "Nombre del Repuesto:", Location = new Point(25, 72), AutoSize = true, Font = new Font("Segoe UI", 9.5F, FontStyle.Bold) };
+                TextBox txtName = new TextBox { Location = new Point(25, 94), Size = new Size(390, 26), Font = new Font("Segoe UI", 10F), Text = esEdicion ? repuestoExistente.NombreRepuesto : "" };
 
-                Label lblPrecio = new Label { Text = "Precio Unitario ($):", Location = new Point(25, 140), AutoSize = true, Font = new Font("Segoe UI", 9.5F, FontStyle.Bold) };
-                TextBox txtPrecio = new TextBox { Location = new Point(25, 162), Size = new Size(185, 26), Font = new Font("Segoe UI", 10F), Text = esEdicion ? repuestoExistente.PrecioUnitario.ToString("0.00") : "0.00" };
+                Label lblProveedor = new Label { Text = "Proveedor:", Location = new Point(25, 129), AutoSize = true, Font = new Font("Segoe UI", 9.5F, FontStyle.Bold) };
+                ComboBox cboProveedor = new ComboBox { Location = new Point(25, 151), Size = new Size(390, 26), DropDownStyle = ComboBoxStyle.DropDownList, Font = new Font("Segoe UI", 10F) };
+                string[] proveedores = new string[] { "LCR", "Super Repuestos", "Econo Parts" };
+                cboProveedor.Items.AddRange(proveedores);
 
-                Label lblStock = new Label { Text = "Existencia Actual / Stock:", Location = new Point(230, 140), AutoSize = true, Font = new Font("Segoe UI", 9.5F, FontStyle.Bold) };
-                TextBox txtStock = new TextBox { Location = new Point(230, 162), Size = new Size(185, 26), Font = new Font("Segoe UI", 10F), Text = esEdicion ? repuestoExistente.Existencia.ToString() : "0" };
+                if (esEdicion && !string.IsNullOrEmpty(repuestoExistente.Proveedor))
+                {
+                    if (!cboProveedor.Items.Contains(repuestoExistente.Proveedor))
+                    {
+                        cboProveedor.Items.Add(repuestoExistente.Proveedor);
+                    }
+                    cboProveedor.SelectedItem = repuestoExistente.Proveedor;
+                }
+                else
+                {
+                    cboProveedor.SelectedIndex = 0;
+                }
+
+                Label lblPrecio = new Label { Text = "Precio Unitario ($):", Location = new Point(25, 186), AutoSize = true, Font = new Font("Segoe UI", 9.5F, FontStyle.Bold) };
+                TextBox txtPrecio = new TextBox { Location = new Point(25, 208), Size = new Size(185, 26), Font = new Font("Segoe UI", 10F), Text = esEdicion ? repuestoExistente.PrecioUnitario.ToString("0.00") : "0.00" };
+
+                Label lblStock = new Label { Text = "Existencia Actual / Stock:", Location = new Point(230, 186), AutoSize = true, Font = new Font("Segoe UI", 9.5F, FontStyle.Bold) };
+                TextBox txtStock = new TextBox { Location = new Point(230, 208), Size = new Size(185, 26), Font = new Font("Segoe UI", 10F), Text = esEdicion ? repuestoExistente.Existencia.ToString() : "0" };
 
                 Button btnGuardar = new Button
                 {
                     Text = esEdicion ? "Actualizar Repuesto" : "Guardar Repuesto",
-                    Location = new Point(230, 235),
+                    Location = new Point(230, 280),
                     Size = new Size(185, 40),
                     BackColor = Color.FromArgb(0, 191, 255),
                     ForeColor = Color.White,
@@ -481,7 +554,7 @@ namespace TallerTolucaUI
                 Button btnCancelar = new Button
                 {
                     Text = "Cancelar",
-                    Location = new Point(25, 235),
+                    Location = new Point(25, 280),
                     Size = new Size(185, 40),
                     BackColor = Color.White,
                     ForeColor = Color.FromArgb(10, 22, 40),
@@ -501,6 +574,12 @@ namespace TallerTolucaUI
                             return;
                         }
 
+                        if (cboProveedor.SelectedItem == null)
+                        {
+                            MessageBox.Show("Seleccione un proveedor de la lista.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+
                         if (!decimal.TryParse(txtPrecio.Text, out decimal precio) || precio <= 0)
                         {
                             MessageBox.Show("Ingrese un precio unitario válido mayor a cero.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -516,6 +595,7 @@ namespace TallerTolucaUI
                         RepuestoEN rep = esEdicion ? repuestoExistente : new RepuestoEN();
                         rep.Codigo = txtCode.Text.Trim();
                         rep.NombreRepuesto = txtName.Text.Trim();
+                        rep.Proveedor = cboProveedor.SelectedItem.ToString();
                         rep.PrecioUnitario = precio;
                         rep.Existencia = stock;
 
@@ -541,7 +621,7 @@ namespace TallerTolucaUI
 
                 btnCancelar.Click += (s, ev) => { modal.Close(); };
 
-                modal.Controls.AddRange(new Control[] { lblCode, txtCode, lblName, txtName, lblPrecio, txtPrecio, lblStock, txtStock, btnGuardar, btnCancelar });
+                modal.Controls.AddRange(new Control[] { lblCode, txtCode, lblName, txtName, lblProveedor, cboProveedor, lblPrecio, txtPrecio, lblStock, txtStock, btnGuardar, btnCancelar });
                 if (modal.ShowDialog() == DialogResult.OK)
                 {
                     CargarDatos();
@@ -663,6 +743,7 @@ namespace TallerTolucaUI
                              $"ID: {r.RepuestoID}\n" +
                              $"Código: {r.Codigo}\n" +
                              $"Nombre: {r.NombreRepuesto}\n" +
+                             $"Proveedor: {(string.IsNullOrWhiteSpace(r.Proveedor) ? "No especificado" : r.Proveedor)}\n" +
                              $"Precio Unitario: ${r.PrecioUnitario:0.00}\n" +
                              $"Existencia Actual: {r.Existencia} unidades\n" +
                              $"Estado del Stock: {estado}";

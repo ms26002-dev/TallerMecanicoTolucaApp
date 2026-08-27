@@ -123,6 +123,7 @@ CREATE TABLE dbo.Repuestos (
     RepuestoID      INT IDENTITY(1,1) PRIMARY KEY,
     Codigo          NVARCHAR(30)  NOT NULL UNIQUE,
     NombreRepuesto  NVARCHAR(150) NOT NULL,
+    Proveedor       NVARCHAR(100) NULL,
     PrecioUnitario  DECIMAL(12,2) NOT NULL,
     Existencia      INT NOT NULL DEFAULT 0
 );

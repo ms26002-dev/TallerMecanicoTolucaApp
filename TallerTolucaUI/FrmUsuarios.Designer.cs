@@ -1,6 +1,6 @@
 namespace TallerTolucaUI
 {
-    partial class FrmEmpleados
+    partial class FrmUsuarios
     {
         private System.ComponentModel.IContainer components = null;
         private System.Windows.Forms.Panel pnlHeader;
@@ -12,20 +12,22 @@ namespace TallerTolucaUI
         private System.Windows.Forms.Panel pnlFormCard;
         private System.Windows.Forms.Label lblFormTitulo;
         private System.Windows.Forms.Label lblCamposObligatorios;
-        private System.Windows.Forms.Label lblNombre;
-        private System.Windows.Forms.TextBox txtNombre;
-        private System.Windows.Forms.Label lblCargo;
-        private System.Windows.Forms.ComboBox cboCargo;
-        private System.Windows.Forms.Label lblTelefono;
-        private System.Windows.Forms.TextBox txtTelefono;
-        private System.Windows.Forms.Label lblCorreo;
-        private System.Windows.Forms.TextBox txtCorreo;
+        private System.Windows.Forms.Label lblEmpleado;
+        private System.Windows.Forms.ComboBox cboEmpleado;
+        private System.Windows.Forms.Label lblNombreUsuario;
+        private System.Windows.Forms.TextBox txtNombreUsuario;
+        private System.Windows.Forms.Label lblClave;
+        private System.Windows.Forms.TextBox txtClave;
+        private System.Windows.Forms.Label lblConfirmarClave;
+        private System.Windows.Forms.TextBox txtConfirmarClave;
+        private System.Windows.Forms.Label lblRol;
+        private System.Windows.Forms.ComboBox cboRol;
         private System.Windows.Forms.Label lblEstado;
         private System.Windows.Forms.ComboBox cboEstado;
         private System.Windows.Forms.Label lblMensaje;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Button btnModificar;
-        private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.Button btnDesactivar;
         private System.Windows.Forms.Button btnLimpiar;
 
         private System.Windows.Forms.Panel pnlTableCard;
@@ -33,8 +35,8 @@ namespace TallerTolucaUI
         private System.Windows.Forms.Label lblBuscar;
         private System.Windows.Forms.TextBox txtBuscar;
         private System.Windows.Forms.Button btnRefrescar;
-        private System.Windows.Forms.Label lblTotalEmpleados;
-        private System.Windows.Forms.DataGridView dgvEmpleados;
+        private System.Windows.Forms.Label lblTotalUsuarios;
+        private System.Windows.Forms.DataGridView dgvUsuarios;
 
         protected override void Dispose(bool disposing)
         {
@@ -53,20 +55,22 @@ namespace TallerTolucaUI
             pnlFormCard = new System.Windows.Forms.Panel();
             lblFormTitulo = new System.Windows.Forms.Label();
             lblCamposObligatorios = new System.Windows.Forms.Label();
-            lblNombre = new System.Windows.Forms.Label();
-            txtNombre = new System.Windows.Forms.TextBox();
-            lblCargo = new System.Windows.Forms.Label();
-            cboCargo = new System.Windows.Forms.ComboBox();
-            lblTelefono = new System.Windows.Forms.Label();
-            txtTelefono = new System.Windows.Forms.TextBox();
-            lblCorreo = new System.Windows.Forms.Label();
-            txtCorreo = new System.Windows.Forms.TextBox();
+            lblEmpleado = new System.Windows.Forms.Label();
+            cboEmpleado = new System.Windows.Forms.ComboBox();
+            lblNombreUsuario = new System.Windows.Forms.Label();
+            txtNombreUsuario = new System.Windows.Forms.TextBox();
+            lblClave = new System.Windows.Forms.Label();
+            txtClave = new System.Windows.Forms.TextBox();
+            lblConfirmarClave = new System.Windows.Forms.Label();
+            txtConfirmarClave = new System.Windows.Forms.TextBox();
+            lblRol = new System.Windows.Forms.Label();
+            cboRol = new System.Windows.Forms.ComboBox();
             lblEstado = new System.Windows.Forms.Label();
             cboEstado = new System.Windows.Forms.ComboBox();
             lblMensaje = new System.Windows.Forms.Label();
             btnGuardar = new System.Windows.Forms.Button();
             btnModificar = new System.Windows.Forms.Button();
-            btnEliminar = new System.Windows.Forms.Button();
+            btnDesactivar = new System.Windows.Forms.Button();
             btnLimpiar = new System.Windows.Forms.Button();
 
             pnlTableCard = new System.Windows.Forms.Panel();
@@ -74,19 +78,19 @@ namespace TallerTolucaUI
             lblBuscar = new System.Windows.Forms.Label();
             txtBuscar = new System.Windows.Forms.TextBox();
             btnRefrescar = new System.Windows.Forms.Button();
-            lblTotalEmpleados = new System.Windows.Forms.Label();
-            dgvEmpleados = new System.Windows.Forms.DataGridView();
+            lblTotalUsuarios = new System.Windows.Forms.Label();
+            dgvUsuarios = new System.Windows.Forms.DataGridView();
 
             pnlHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picLogoHeader).BeginInit();
             pnlFormCard.SuspendLayout();
             pnlTableCard.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvEmpleados).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvUsuarios).BeginInit();
             SuspendLayout();
 
-            // 
+            //
             // pnlHeader
-            // 
+            //
             pnlHeader.BackColor = System.Drawing.Color.White;
             pnlHeader.Controls.Add(picLogoHeader);
             pnlHeader.Controls.Add(lblHeaderTitle);
@@ -99,9 +103,9 @@ namespace TallerTolucaUI
             pnlHeader.TabIndex = 0;
             pnlHeader.Paint += PnlCard_Paint;
 
-            // 
+            //
             // picLogoHeader
-            // 
+            //
             picLogoHeader.Location = new System.Drawing.Point(20, 12);
             picLogoHeader.Name = "picLogoHeader";
             picLogoHeader.Size = new System.Drawing.Size(46, 44);
@@ -109,9 +113,9 @@ namespace TallerTolucaUI
             picLogoHeader.TabIndex = 0;
             picLogoHeader.TabStop = false;
 
-            // 
+            //
             // lblHeaderTitle
-            // 
+            //
             lblHeaderTitle.AutoSize = true;
             lblHeaderTitle.Font = new System.Drawing.Font("Segoe UI", 13.5F, System.Drawing.FontStyle.Bold);
             lblHeaderTitle.ForeColor = System.Drawing.Color.FromArgb(15, 23, 42);
@@ -119,11 +123,11 @@ namespace TallerTolucaUI
             lblHeaderTitle.Name = "lblHeaderTitle";
             lblHeaderTitle.Size = new System.Drawing.Size(262, 25);
             lblHeaderTitle.TabIndex = 1;
-            lblHeaderTitle.Text = "Administración de Empleados";
+            lblHeaderTitle.Text = "Administración de Usuarios";
 
-            // 
+            //
             // lblHeaderSubtitle
-            // 
+            //
             lblHeaderSubtitle.AutoSize = true;
             lblHeaderSubtitle.Font = new System.Drawing.Font("Segoe UI", 8.5F);
             lblHeaderSubtitle.ForeColor = System.Drawing.Color.FromArgb(100, 116, 139);
@@ -131,11 +135,11 @@ namespace TallerTolucaUI
             lblHeaderSubtitle.Name = "lblHeaderSubtitle";
             lblHeaderSubtitle.Size = new System.Drawing.Size(425, 15);
             lblHeaderSubtitle.TabIndex = 2;
-            lblHeaderSubtitle.Text = "Sistema de Gestión Automotriz - Taller Toluca | Gestión de Personal";
+            lblHeaderSubtitle.Text = "Sistema de Gestión Automotriz - Taller Toluca | Cuentas de Acceso al Sistema";
 
-            // 
+            //
             // btnCerrarForm
-            // 
+            //
             btnCerrarForm.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             btnCerrarForm.BackColor = System.Drawing.Color.FromArgb(248, 250, 252);
             btnCerrarForm.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -151,37 +155,39 @@ namespace TallerTolucaUI
             btnCerrarForm.UseVisualStyleBackColor = false;
             btnCerrarForm.Click += (s, e) => this.Close();
 
-            // 
+            //
             // pnlFormCard
-            // 
+            //
             pnlFormCard.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             pnlFormCard.BackColor = System.Drawing.Color.White;
             pnlFormCard.Controls.Add(lblFormTitulo);
             pnlFormCard.Controls.Add(lblCamposObligatorios);
-            pnlFormCard.Controls.Add(lblNombre);
-            pnlFormCard.Controls.Add(txtNombre);
-            pnlFormCard.Controls.Add(lblCargo);
-            pnlFormCard.Controls.Add(cboCargo);
-            pnlFormCard.Controls.Add(lblTelefono);
-            pnlFormCard.Controls.Add(txtTelefono);
-            pnlFormCard.Controls.Add(lblCorreo);
-            pnlFormCard.Controls.Add(txtCorreo);
+            pnlFormCard.Controls.Add(lblEmpleado);
+            pnlFormCard.Controls.Add(cboEmpleado);
+            pnlFormCard.Controls.Add(lblNombreUsuario);
+            pnlFormCard.Controls.Add(txtNombreUsuario);
+            pnlFormCard.Controls.Add(lblClave);
+            pnlFormCard.Controls.Add(txtClave);
+            pnlFormCard.Controls.Add(lblConfirmarClave);
+            pnlFormCard.Controls.Add(txtConfirmarClave);
+            pnlFormCard.Controls.Add(lblRol);
+            pnlFormCard.Controls.Add(cboRol);
             pnlFormCard.Controls.Add(lblEstado);
             pnlFormCard.Controls.Add(cboEstado);
             pnlFormCard.Controls.Add(lblMensaje);
             pnlFormCard.Controls.Add(btnGuardar);
             pnlFormCard.Controls.Add(btnModificar);
-            pnlFormCard.Controls.Add(btnEliminar);
+            pnlFormCard.Controls.Add(btnDesactivar);
             pnlFormCard.Controls.Add(btnLimpiar);
             pnlFormCard.Location = new System.Drawing.Point(20, 84);
             pnlFormCard.Name = "pnlFormCard";
-            pnlFormCard.Size = new System.Drawing.Size(360, 536);
+            pnlFormCard.Size = new System.Drawing.Size(360, 596);
             pnlFormCard.TabIndex = 1;
             pnlFormCard.Paint += PnlCard_Paint;
 
-            // 
+            //
             // lblFormTitulo
-            // 
+            //
             lblFormTitulo.AutoSize = true;
             lblFormTitulo.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             lblFormTitulo.ForeColor = System.Drawing.Color.FromArgb(30, 41, 59);
@@ -189,11 +195,11 @@ namespace TallerTolucaUI
             lblFormTitulo.Name = "lblFormTitulo";
             lblFormTitulo.Size = new System.Drawing.Size(143, 20);
             lblFormTitulo.TabIndex = 0;
-            lblFormTitulo.Text = "Datos del Empleado";
+            lblFormTitulo.Text = "Datos del Usuario";
 
-            // 
+            //
             // lblCamposObligatorios
-            // 
+            //
             lblCamposObligatorios.AutoSize = true;
             lblCamposObligatorios.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             lblCamposObligatorios.ForeColor = System.Drawing.Color.FromArgb(100, 116, 139);
@@ -203,133 +209,158 @@ namespace TallerTolucaUI
             lblCamposObligatorios.TabIndex = 1;
             lblCamposObligatorios.Text = "Los campos obligatorios están marcados con un asterisco *";
 
-            // 
-            // lblNombre
-            // 
-            lblNombre.AutoSize = true;
-            lblNombre.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            lblNombre.ForeColor = System.Drawing.Color.FromArgb(51, 65, 85);
-            lblNombre.Location = new System.Drawing.Point(20, 58);
-            lblNombre.Name = "lblNombre";
-            lblNombre.Size = new System.Drawing.Size(117, 15);
-            lblNombre.TabIndex = 2;
-            lblNombre.Text = "Nombre Completo *";
+            //
+            // lblEmpleado
+            //
+            lblEmpleado.AutoSize = true;
+            lblEmpleado.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            lblEmpleado.ForeColor = System.Drawing.Color.FromArgb(51, 65, 85);
+            lblEmpleado.Location = new System.Drawing.Point(20, 58);
+            lblEmpleado.Name = "lblEmpleado";
+            lblEmpleado.Size = new System.Drawing.Size(90, 15);
+            lblEmpleado.TabIndex = 2;
+            lblEmpleado.Text = "Empleado *";
 
-            // 
-            // txtNombre
-            // 
-            txtNombre.BackColor = System.Drawing.Color.FromArgb(248, 250, 252);
-            txtNombre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            txtNombre.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-            txtNombre.ForeColor = System.Drawing.Color.FromArgb(15, 23, 42);
-            txtNombre.Location = new System.Drawing.Point(20, 75);
-            txtNombre.MaxLength = 150;
-            txtNombre.Name = "txtNombre";
-            txtNombre.Size = new System.Drawing.Size(320, 24);
-            txtNombre.TabIndex = 0;
-            txtNombre.TextChanged += Input_TextChanged;
+            //
+            // cboEmpleado
+            //
+            cboEmpleado.BackColor = System.Drawing.Color.FromArgb(248, 250, 252);
+            cboEmpleado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            cboEmpleado.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            cboEmpleado.ForeColor = System.Drawing.Color.FromArgb(15, 23, 42);
+            cboEmpleado.FormattingEnabled = true;
+            cboEmpleado.Location = new System.Drawing.Point(20, 75);
+            cboEmpleado.Name = "cboEmpleado";
+            cboEmpleado.Size = new System.Drawing.Size(320, 24);
+            cboEmpleado.TabIndex = 0;
+            cboEmpleado.SelectedIndexChanged += Input_TextChanged;
 
-            // 
-            // lblCargo
-            // 
-            lblCargo.AutoSize = true;
-            lblCargo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            lblCargo.ForeColor = System.Drawing.Color.FromArgb(51, 65, 85);
-            lblCargo.Location = new System.Drawing.Point(20, 105);
-            lblCargo.Name = "lblCargo";
-            lblCargo.Size = new System.Drawing.Size(84, 15);
-            lblCargo.TabIndex = 3;
-            lblCargo.Text = "Cargo / Rol *";
+            //
+            // lblNombreUsuario
+            //
+            lblNombreUsuario.AutoSize = true;
+            lblNombreUsuario.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            lblNombreUsuario.ForeColor = System.Drawing.Color.FromArgb(51, 65, 85);
+            lblNombreUsuario.Location = new System.Drawing.Point(20, 105);
+            lblNombreUsuario.Name = "lblNombreUsuario";
+            lblNombreUsuario.Size = new System.Drawing.Size(120, 15);
+            lblNombreUsuario.TabIndex = 3;
+            lblNombreUsuario.Text = "Nombre de Usuario *";
 
-            // 
-            // cboCargo
-            // 
-            cboCargo.BackColor = System.Drawing.Color.FromArgb(248, 250, 252);
-            cboCargo.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-            cboCargo.ForeColor = System.Drawing.Color.FromArgb(15, 23, 42);
-            cboCargo.FormattingEnabled = true;
-            cboCargo.Items.AddRange(new object[] {
+            //
+            // txtNombreUsuario
+            //
+            txtNombreUsuario.BackColor = System.Drawing.Color.FromArgb(248, 250, 252);
+            txtNombreUsuario.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            txtNombreUsuario.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            txtNombreUsuario.ForeColor = System.Drawing.Color.FromArgb(15, 23, 42);
+            txtNombreUsuario.Location = new System.Drawing.Point(20, 122);
+            txtNombreUsuario.MaxLength = 50;
+            txtNombreUsuario.Name = "txtNombreUsuario";
+            txtNombreUsuario.Size = new System.Drawing.Size(320, 24);
+            txtNombreUsuario.TabIndex = 1;
+            txtNombreUsuario.TextChanged += Input_TextChanged;
+
+            //
+            // lblClave
+            //
+            lblClave.AutoSize = true;
+            lblClave.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            lblClave.ForeColor = System.Drawing.Color.FromArgb(51, 65, 85);
+            lblClave.Location = new System.Drawing.Point(20, 152);
+            lblClave.Name = "lblClave";
+            lblClave.Size = new System.Drawing.Size(90, 15);
+            lblClave.TabIndex = 4;
+            lblClave.Text = "Contraseña *";
+
+            //
+            // txtClave
+            //
+            txtClave.BackColor = System.Drawing.Color.FromArgb(248, 250, 252);
+            txtClave.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            txtClave.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            txtClave.ForeColor = System.Drawing.Color.FromArgb(15, 23, 42);
+            txtClave.Location = new System.Drawing.Point(20, 169);
+            txtClave.MaxLength = 100;
+            txtClave.Name = "txtClave";
+            txtClave.PasswordChar = '●';
+            txtClave.Size = new System.Drawing.Size(320, 24);
+            txtClave.TabIndex = 2;
+            txtClave.TextChanged += Input_TextChanged;
+
+            //
+            // lblConfirmarClave
+            //
+            lblConfirmarClave.AutoSize = true;
+            lblConfirmarClave.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            lblConfirmarClave.ForeColor = System.Drawing.Color.FromArgb(51, 65, 85);
+            lblConfirmarClave.Location = new System.Drawing.Point(20, 199);
+            lblConfirmarClave.Name = "lblConfirmarClave";
+            lblConfirmarClave.Size = new System.Drawing.Size(140, 15);
+            lblConfirmarClave.TabIndex = 5;
+            lblConfirmarClave.Text = "Confirmar Contraseña *";
+
+            //
+            // txtConfirmarClave
+            //
+            txtConfirmarClave.BackColor = System.Drawing.Color.FromArgb(248, 250, 252);
+            txtConfirmarClave.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            txtConfirmarClave.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            txtConfirmarClave.ForeColor = System.Drawing.Color.FromArgb(15, 23, 42);
+            txtConfirmarClave.Location = new System.Drawing.Point(20, 216);
+            txtConfirmarClave.MaxLength = 100;
+            txtConfirmarClave.Name = "txtConfirmarClave";
+            txtConfirmarClave.PasswordChar = '●';
+            txtConfirmarClave.Size = new System.Drawing.Size(320, 24);
+            txtConfirmarClave.TabIndex = 3;
+            txtConfirmarClave.TextChanged += Input_TextChanged;
+
+            //
+            // lblRol
+            //
+            lblRol.AutoSize = true;
+            lblRol.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            lblRol.ForeColor = System.Drawing.Color.FromArgb(51, 65, 85);
+            lblRol.Location = new System.Drawing.Point(20, 246);
+            lblRol.Name = "lblRol";
+            lblRol.Size = new System.Drawing.Size(50, 15);
+            lblRol.TabIndex = 6;
+            lblRol.Text = "Rol *";
+
+            //
+            // cboRol
+            //
+            cboRol.BackColor = System.Drawing.Color.FromArgb(248, 250, 252);
+            cboRol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            cboRol.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+            cboRol.ForeColor = System.Drawing.Color.FromArgb(15, 23, 42);
+            cboRol.FormattingEnabled = true;
+            cboRol.Items.AddRange(new object[] {
                 "Administrador",
-                "Mecánico",
                 "Recepcionista",
-                "Jefe de Taller",
-                "Cajero",
-                "Técnico de Diagnóstico",
-                "Asesor de Servicio"
+                "Mecánico"
             });
-            cboCargo.Location = new System.Drawing.Point(20, 122);
-            cboCargo.Name = "cboCargo";
-            cboCargo.Size = new System.Drawing.Size(320, 24);
-            cboCargo.TabIndex = 1;
-            cboCargo.TextChanged += Input_TextChanged;
+            cboRol.Location = new System.Drawing.Point(20, 263);
+            cboRol.Name = "cboRol";
+            cboRol.Size = new System.Drawing.Size(320, 24);
+            cboRol.TabIndex = 4;
+            cboRol.SelectedIndexChanged += Input_TextChanged;
 
-            // 
-            // lblTelefono
-            // 
-            lblTelefono.AutoSize = true;
-            lblTelefono.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            lblTelefono.ForeColor = System.Drawing.Color.FromArgb(51, 65, 85);
-            lblTelefono.Location = new System.Drawing.Point(20, 152);
-            lblTelefono.Name = "lblTelefono";
-            lblTelefono.Size = new System.Drawing.Size(56, 15);
-            lblTelefono.TabIndex = 4;
-            lblTelefono.Text = "Teléfono";
-
-            // 
-            // txtTelefono
-            // 
-            txtTelefono.BackColor = System.Drawing.Color.FromArgb(248, 250, 252);
-            txtTelefono.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            txtTelefono.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-            txtTelefono.ForeColor = System.Drawing.Color.FromArgb(15, 23, 42);
-            txtTelefono.Location = new System.Drawing.Point(20, 169);
-            txtTelefono.MaxLength = 30;
-            txtTelefono.Name = "txtTelefono";
-            txtTelefono.Size = new System.Drawing.Size(320, 24);
-            txtTelefono.TabIndex = 2;
-            txtTelefono.TextChanged += Input_TextChanged;
-
-            // 
-            // lblCorreo
-            // 
-            lblCorreo.AutoSize = true;
-            lblCorreo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            lblCorreo.ForeColor = System.Drawing.Color.FromArgb(51, 65, 85);
-            lblCorreo.Location = new System.Drawing.Point(20, 199);
-            lblCorreo.Name = "lblCorreo";
-            lblCorreo.Size = new System.Drawing.Size(111, 15);
-            lblCorreo.TabIndex = 5;
-            lblCorreo.Text = "Correo Electrónico";
-
-            // 
-            // txtCorreo
-            // 
-            txtCorreo.BackColor = System.Drawing.Color.FromArgb(248, 250, 252);
-            txtCorreo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            txtCorreo.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-            txtCorreo.ForeColor = System.Drawing.Color.FromArgb(15, 23, 42);
-            txtCorreo.Location = new System.Drawing.Point(20, 216);
-            txtCorreo.MaxLength = 150;
-            txtCorreo.Name = "txtCorreo";
-            txtCorreo.Size = new System.Drawing.Size(320, 24);
-            txtCorreo.TabIndex = 3;
-            txtCorreo.TextChanged += Input_TextChanged;
-
-            // 
+            //
             // lblEstado
-            // 
+            //
             lblEstado.AutoSize = true;
             lblEstado.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             lblEstado.ForeColor = System.Drawing.Color.FromArgb(51, 65, 85);
-            lblEstado.Location = new System.Drawing.Point(20, 246);
+            lblEstado.Location = new System.Drawing.Point(20, 293);
             lblEstado.Name = "lblEstado";
             lblEstado.Size = new System.Drawing.Size(51, 15);
-            lblEstado.TabIndex = 6;
+            lblEstado.TabIndex = 7;
             lblEstado.Text = "Estado *";
 
-            // 
+            //
             // cboEstado
-            // 
+            //
             cboEstado.BackColor = System.Drawing.Color.FromArgb(248, 250, 252);
             cboEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             cboEstado.Font = new System.Drawing.Font("Segoe UI", 9.5F);
@@ -339,113 +370,113 @@ namespace TallerTolucaUI
                 "Activo",
                 "Inactivo"
             });
-            cboEstado.Location = new System.Drawing.Point(20, 263);
+            cboEstado.Location = new System.Drawing.Point(20, 310);
             cboEstado.Name = "cboEstado";
             cboEstado.Size = new System.Drawing.Size(320, 24);
-            cboEstado.TabIndex = 4;
+            cboEstado.TabIndex = 5;
             cboEstado.SelectedIndex = 0;
             cboEstado.SelectedIndexChanged += Input_TextChanged;
 
-            // 
+            //
             // lblMensaje
-            // 
+            //
             lblMensaje.Font = new System.Drawing.Font("Segoe UI", 8.5F);
             lblMensaje.ForeColor = System.Drawing.Color.FromArgb(220, 38, 38);
-            lblMensaje.Location = new System.Drawing.Point(20, 295);
+            lblMensaje.Location = new System.Drawing.Point(20, 342);
             lblMensaje.Name = "lblMensaje";
             lblMensaje.Size = new System.Drawing.Size(320, 34);
-            lblMensaje.TabIndex = 7;
+            lblMensaje.TabIndex = 8;
             lblMensaje.Text = "";
             lblMensaje.Visible = false;
 
-            // 
+            //
             // btnGuardar
-            // 
+            //
             btnGuardar.BackColor = System.Drawing.Color.FromArgb(2, 132, 199);
             btnGuardar.Cursor = System.Windows.Forms.Cursors.Hand;
             btnGuardar.FlatAppearance.BorderSize = 0;
             btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnGuardar.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
             btnGuardar.ForeColor = System.Drawing.Color.White;
-            btnGuardar.Location = new System.Drawing.Point(20, 345);
+            btnGuardar.Location = new System.Drawing.Point(20, 392);
             btnGuardar.Name = "btnGuardar";
             btnGuardar.Size = new System.Drawing.Size(155, 42);
-            btnGuardar.TabIndex = 5;
-            btnGuardar.Text = "Guardar Empleado";
+            btnGuardar.TabIndex = 6;
+            btnGuardar.Text = "Crear Usuario";
             btnGuardar.UseVisualStyleBackColor = false;
             btnGuardar.Click += btnGuardar_Click;
 
-            // 
+            //
             // btnModificar
-            // 
+            //
             btnModificar.BackColor = System.Drawing.Color.FromArgb(13, 148, 136);
             btnModificar.Cursor = System.Windows.Forms.Cursors.Hand;
             btnModificar.FlatAppearance.BorderSize = 0;
             btnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnModificar.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
             btnModificar.ForeColor = System.Drawing.Color.White;
-            btnModificar.Location = new System.Drawing.Point(185, 345);
+            btnModificar.Location = new System.Drawing.Point(185, 392);
             btnModificar.Name = "btnModificar";
             btnModificar.Size = new System.Drawing.Size(155, 42);
-            btnModificar.TabIndex = 6;
+            btnModificar.TabIndex = 7;
             btnModificar.Text = "Modificar";
             btnModificar.UseVisualStyleBackColor = false;
             btnModificar.Click += btnModificar_Click;
 
-            // 
-            // btnEliminar
-            // 
-            btnEliminar.BackColor = System.Drawing.Color.FromArgb(220, 38, 38);
-            btnEliminar.Cursor = System.Windows.Forms.Cursors.Hand;
-            btnEliminar.FlatAppearance.BorderSize = 0;
-            btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            btnEliminar.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
-            btnEliminar.ForeColor = System.Drawing.Color.White;
-            btnEliminar.Location = new System.Drawing.Point(20, 397);
-            btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new System.Drawing.Size(155, 42);
-            btnEliminar.TabIndex = 7;
-            btnEliminar.Text = "Eliminar";
-            btnEliminar.UseVisualStyleBackColor = false;
-            btnEliminar.Click += btnEliminar_Click;
+            //
+            // btnDesactivar
+            //
+            btnDesactivar.BackColor = System.Drawing.Color.FromArgb(220, 38, 38);
+            btnDesactivar.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnDesactivar.FlatAppearance.BorderSize = 0;
+            btnDesactivar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnDesactivar.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
+            btnDesactivar.ForeColor = System.Drawing.Color.White;
+            btnDesactivar.Location = new System.Drawing.Point(20, 444);
+            btnDesactivar.Name = "btnDesactivar";
+            btnDesactivar.Size = new System.Drawing.Size(155, 42);
+            btnDesactivar.TabIndex = 8;
+            btnDesactivar.Text = "Desactivar Acceso";
+            btnDesactivar.UseVisualStyleBackColor = false;
+            btnDesactivar.Click += btnDesactivar_Click;
 
-            // 
+            //
             // btnLimpiar
-            // 
+            //
             btnLimpiar.BackColor = System.Drawing.Color.FromArgb(100, 116, 139);
             btnLimpiar.Cursor = System.Windows.Forms.Cursors.Hand;
             btnLimpiar.FlatAppearance.BorderSize = 0;
             btnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnLimpiar.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
             btnLimpiar.ForeColor = System.Drawing.Color.White;
-            btnLimpiar.Location = new System.Drawing.Point(185, 397);
+            btnLimpiar.Location = new System.Drawing.Point(185, 444);
             btnLimpiar.Name = "btnLimpiar";
             btnLimpiar.Size = new System.Drawing.Size(155, 42);
-            btnLimpiar.TabIndex = 8;
+            btnLimpiar.TabIndex = 9;
             btnLimpiar.Text = "Nuevo / Limpiar";
             btnLimpiar.UseVisualStyleBackColor = false;
             btnLimpiar.Click += btnLimpiar_Click;
 
-            // 
+            //
             // pnlTableCard
-            // 
+            //
             pnlTableCard.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             pnlTableCard.BackColor = System.Drawing.Color.White;
             pnlTableCard.Controls.Add(lblTableTitulo);
             pnlTableCard.Controls.Add(lblBuscar);
             pnlTableCard.Controls.Add(txtBuscar);
             pnlTableCard.Controls.Add(btnRefrescar);
-            pnlTableCard.Controls.Add(lblTotalEmpleados);
-            pnlTableCard.Controls.Add(dgvEmpleados);
+            pnlTableCard.Controls.Add(lblTotalUsuarios);
+            pnlTableCard.Controls.Add(dgvUsuarios);
             pnlTableCard.Location = new System.Drawing.Point(395, 84);
             pnlTableCard.Name = "pnlTableCard";
-            pnlTableCard.Size = new System.Drawing.Size(565, 536);
+            pnlTableCard.Size = new System.Drawing.Size(565, 596);
             pnlTableCard.TabIndex = 2;
             pnlTableCard.Paint += PnlCard_Paint;
 
-            // 
+            //
             // lblTableTitulo
-            // 
+            //
             lblTableTitulo.AutoSize = true;
             lblTableTitulo.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             lblTableTitulo.ForeColor = System.Drawing.Color.FromArgb(30, 41, 59);
@@ -453,11 +484,11 @@ namespace TallerTolucaUI
             lblTableTitulo.Name = "lblTableTitulo";
             lblTableTitulo.Size = new System.Drawing.Size(217, 20);
             lblTableTitulo.TabIndex = 0;
-            lblTableTitulo.Text = "Listado de Empleados Activos";
+            lblTableTitulo.Text = "Listado de Usuarios";
 
-            // 
+            //
             // lblBuscar
-            // 
+            //
             lblBuscar.AutoSize = true;
             lblBuscar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             lblBuscar.ForeColor = System.Drawing.Color.FromArgb(51, 65, 85);
@@ -467,9 +498,9 @@ namespace TallerTolucaUI
             lblBuscar.TabIndex = 1;
             lblBuscar.Text = "Buscar:";
 
-            // 
+            //
             // txtBuscar
-            // 
+            //
             txtBuscar.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             txtBuscar.BackColor = System.Drawing.Color.FromArgb(248, 250, 252);
             txtBuscar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -477,14 +508,14 @@ namespace TallerTolucaUI
             txtBuscar.ForeColor = System.Drawing.Color.FromArgb(15, 23, 42);
             txtBuscar.Location = new System.Drawing.Point(73, 42);
             txtBuscar.Name = "txtBuscar";
-            txtBuscar.PlaceholderText = "Filtrar por nombre, cargo, teléfono o correo...";
+            txtBuscar.PlaceholderText = "Filtrar por usuario, empleado o rol...";
             txtBuscar.Size = new System.Drawing.Size(350, 25);
             txtBuscar.TabIndex = 0;
             txtBuscar.TextChanged += TxtBuscar_TextChanged;
 
-            // 
+            //
             // btnRefrescar
-            // 
+            //
             btnRefrescar.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             btnRefrescar.BackColor = System.Drawing.Color.FromArgb(241, 245, 249);
             btnRefrescar.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -500,60 +531,60 @@ namespace TallerTolucaUI
             btnRefrescar.UseVisualStyleBackColor = false;
             btnRefrescar.Click += BtnRefrescar_Click;
 
-            // 
-            // lblTotalEmpleados
-            // 
-            lblTotalEmpleados.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
-            lblTotalEmpleados.AutoSize = true;
-            lblTotalEmpleados.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            lblTotalEmpleados.ForeColor = System.Drawing.Color.FromArgb(2, 132, 199);
-            lblTotalEmpleados.Location = new System.Drawing.Point(20, 502);
-            lblTotalEmpleados.Name = "lblTotalEmpleados";
-            lblTotalEmpleados.Size = new System.Drawing.Size(156, 15);
-            lblTotalEmpleados.TabIndex = 3;
-            lblTotalEmpleados.Text = "Total empleados activos: 0";
+            //
+            // lblTotalUsuarios
+            //
+            lblTotalUsuarios.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            lblTotalUsuarios.AutoSize = true;
+            lblTotalUsuarios.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            lblTotalUsuarios.ForeColor = System.Drawing.Color.FromArgb(2, 132, 199);
+            lblTotalUsuarios.Location = new System.Drawing.Point(20, 562);
+            lblTotalUsuarios.Name = "lblTotalUsuarios";
+            lblTotalUsuarios.Size = new System.Drawing.Size(156, 15);
+            lblTotalUsuarios.TabIndex = 3;
+            lblTotalUsuarios.Text = "Total usuarios: 0";
 
-            // 
-            // dgvEmpleados
-            // 
-            dgvEmpleados.AllowUserToAddRows = false;
-            dgvEmpleados.AllowUserToDeleteRows = false;
-            dgvEmpleados.AllowUserToResizeRows = false;
-            dgvEmpleados.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-            dgvEmpleados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dgvEmpleados.BackgroundColor = System.Drawing.Color.White;
-            dgvEmpleados.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dgvEmpleados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvEmpleados.Location = new System.Drawing.Point(20, 78);
-            dgvEmpleados.MultiSelect = false;
-            dgvEmpleados.Name = "dgvEmpleados";
-            dgvEmpleados.ReadOnly = true;
-            dgvEmpleados.RowHeadersVisible = false;
-            dgvEmpleados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            dgvEmpleados.Size = new System.Drawing.Size(523, 410);
-            dgvEmpleados.TabIndex = 2;
-            dgvEmpleados.CellClick += DgvEmpleados_CellClick;
-            dgvEmpleados.SelectionChanged += DgvEmpleados_SelectionChanged;
+            //
+            // dgvUsuarios
+            //
+            dgvUsuarios.AllowUserToAddRows = false;
+            dgvUsuarios.AllowUserToDeleteRows = false;
+            dgvUsuarios.AllowUserToResizeRows = false;
+            dgvUsuarios.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            dgvUsuarios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dgvUsuarios.BackgroundColor = System.Drawing.Color.White;
+            dgvUsuarios.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dgvUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvUsuarios.Location = new System.Drawing.Point(20, 78);
+            dgvUsuarios.MultiSelect = false;
+            dgvUsuarios.Name = "dgvUsuarios";
+            dgvUsuarios.ReadOnly = true;
+            dgvUsuarios.RowHeadersVisible = false;
+            dgvUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            dgvUsuarios.Size = new System.Drawing.Size(523, 470);
+            dgvUsuarios.TabIndex = 2;
+            dgvUsuarios.CellClick += DgvUsuarios_CellClick;
+            dgvUsuarios.SelectionChanged += DgvUsuarios_SelectionChanged;
 
-            // 
-            // FrmEmpleados
-            // 
+            //
+            // FrmUsuarios
+            //
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.Color.FromArgb(241, 245, 249);
-            ClientSize = new System.Drawing.Size(980, 635);
+            ClientSize = new System.Drawing.Size(980, 695);
             Controls.Add(pnlTableCard);
             Controls.Add(pnlFormCard);
             Controls.Add(pnlHeader);
             Font = new System.Drawing.Font("Segoe UI", 9F);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
             MaximizeBox = true;
-            MinimumSize = new System.Drawing.Size(950, 600);
-            Name = "FrmEmpleados";
+            MinimumSize = new System.Drawing.Size(950, 660);
+            Name = "FrmUsuarios";
             StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            Text = "Administración de Empleados - Taller Toluca";
-            Load += FrmEmpleados_Load;
+            Text = "Administración de Usuarios - Taller Toluca";
+            Load += FrmUsuarios_Load;
             pnlHeader.ResumeLayout(false);
             pnlHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picLogoHeader).EndInit();
@@ -561,10 +592,8 @@ namespace TallerTolucaUI
             pnlFormCard.PerformLayout();
             pnlTableCard.ResumeLayout(false);
             pnlTableCard.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvEmpleados).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvUsuarios).EndInit();
             ResumeLayout(false);
         }
     }
 }
-
-

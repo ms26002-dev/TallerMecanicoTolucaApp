@@ -150,6 +150,7 @@ namespace TallerTolucaUI
             // 
             // pnlFormCard
             // 
+            pnlFormCard.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             pnlFormCard.BackColor = System.Drawing.Color.White;
             pnlFormCard.Controls.Add(lblFormTitulo);
             pnlFormCard.Controls.Add(lblCamposObligatorios);
@@ -425,6 +426,7 @@ namespace TallerTolucaUI
             // 
             // txtBuscar
             // 
+            txtBuscar.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             txtBuscar.BackColor = System.Drawing.Color.FromArgb(248, 250, 252);
             txtBuscar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             txtBuscar.Font = new System.Drawing.Font("Segoe UI", 10F);
@@ -439,6 +441,7 @@ namespace TallerTolucaUI
             // 
             // btnRefrescar
             // 
+            btnRefrescar.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             btnRefrescar.BackColor = System.Drawing.Color.FromArgb(241, 245, 249);
             btnRefrescar.Cursor = System.Windows.Forms.Cursors.Hand;
             btnRefrescar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(203, 213, 225);
@@ -499,10 +502,12 @@ namespace TallerTolucaUI
             Controls.Add(pnlFormCard);
             Controls.Add(pnlHeader);
             Font = new System.Drawing.Font("Segoe UI", 9F);
-            FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            MaximizeBox = false;
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
+            MaximizeBox = true;
+            MinimumSize = new System.Drawing.Size(950, 600);
             Name = "FrmClientes";
             StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            WindowState = System.Windows.Forms.FormWindowState.Maximized;
             Text = "Administración de Clientes - Taller Toluca";
             Load += FrmClientes_Load;
             pnlHeader.ResumeLayout(false);

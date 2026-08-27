@@ -147,7 +147,7 @@ namespace TallerTolucaUI
             lblHeaderSubtitle.Name = "lblHeaderSubtitle";
             lblHeaderSubtitle.Size = new System.Drawing.Size(460, 15);
             lblHeaderSubtitle.TabIndex = 2;
-            lblHeaderSubtitle.Text = "Sistema de Gestión Automotriz - Taller Toluca | Gestión de Servicios (TMS-16 / TMS-17 / TMS-18)";
+            lblHeaderSubtitle.Text = "Sistema de Gestión Automotriz - Taller Toluca | Gestión de Servicios";
 
             // 
             // btnCerrarForm
@@ -170,6 +170,7 @@ namespace TallerTolucaUI
             // 
             // pnlFormCard
             // 
+            pnlFormCard.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             pnlFormCard.BackColor = System.Drawing.Color.White;
             pnlFormCard.Controls.Add(lblFormTitulo);
             pnlFormCard.Controls.Add(lblCamposObligatorios);
@@ -414,6 +415,7 @@ namespace TallerTolucaUI
             // 
             // lblUbicacionInfo
             // 
+            lblUbicacionInfo.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             lblUbicacionInfo.AutoSize = true;
             lblUbicacionInfo.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Italic);
             lblUbicacionInfo.ForeColor = System.Drawing.Color.FromArgb(100, 116, 139);
@@ -426,6 +428,7 @@ namespace TallerTolucaUI
             // 
             // lblMensaje
             // 
+            lblMensaje.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             lblMensaje.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold);
             lblMensaje.ForeColor = System.Drawing.Color.FromArgb(220, 38, 38);
             lblMensaje.Location = new System.Drawing.Point(18, 388);
@@ -438,6 +441,7 @@ namespace TallerTolucaUI
             // 
             // btnGuardar
             // 
+            btnGuardar.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             btnGuardar.BackColor = System.Drawing.Color.FromArgb(2, 132, 199);
             btnGuardar.Cursor = System.Windows.Forms.Cursors.Hand;
             btnGuardar.FlatAppearance.BorderSize = 0;
@@ -455,6 +459,7 @@ namespace TallerTolucaUI
             // 
             // btnModificar
             // 
+            btnModificar.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             btnModificar.BackColor = System.Drawing.Color.FromArgb(13, 148, 136);
             btnModificar.Cursor = System.Windows.Forms.Cursors.Hand;
             btnModificar.FlatAppearance.BorderSize = 0;
@@ -472,6 +477,7 @@ namespace TallerTolucaUI
             // 
             // btnFinalizar
             // 
+            btnFinalizar.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             btnFinalizar.BackColor = System.Drawing.Color.FromArgb(217, 119, 6);
             btnFinalizar.Cursor = System.Windows.Forms.Cursors.Hand;
             btnFinalizar.FlatAppearance.BorderSize = 0;
@@ -489,6 +495,7 @@ namespace TallerTolucaUI
             // 
             // btnCancelar
             // 
+            btnCancelar.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             btnCancelar.BackColor = System.Drawing.Color.FromArgb(220, 38, 38);
             btnCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
             btnCancelar.FlatAppearance.BorderSize = 0;
@@ -506,6 +513,7 @@ namespace TallerTolucaUI
             // 
             // btnLimpiar
             // 
+            btnLimpiar.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             btnLimpiar.BackColor = System.Drawing.Color.FromArgb(241, 245, 249);
             btnLimpiar.Cursor = System.Windows.Forms.Cursors.Hand;
             btnLimpiar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(203, 213, 225);
@@ -662,16 +670,20 @@ namespace TallerTolucaUI
             // 
             // FrmOrdenesTrabajo
             // 
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.Color.FromArgb(241, 245, 249);
             ClientSize = new System.Drawing.Size(1060, 690);
             Controls.Add(pnlTableCard);
             Controls.Add(pnlFormCard);
             Controls.Add(pnlHeader);
             Font = new System.Drawing.Font("Segoe UI", 9F);
-            FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
+            MaximizeBox = true;
             MinimumSize = new System.Drawing.Size(1000, 640);
             Name = "FrmOrdenesTrabajo";
             StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            WindowState = System.Windows.Forms.FormWindowState.Maximized;
             Text = "Control de Órdenes de Trabajo";
             Load += FrmOrdenesTrabajo_Load;
             pnlHeader.ResumeLayout(false);

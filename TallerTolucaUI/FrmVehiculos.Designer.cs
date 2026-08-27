@@ -139,7 +139,7 @@ namespace TallerTolucaUI
             lblHeaderSubtitle.Name = "lblHeaderSubtitle";
             lblHeaderSubtitle.Size = new System.Drawing.Size(445, 15);
             lblHeaderSubtitle.TabIndex = 2;
-            lblHeaderSubtitle.Text = "Sistema de Gestión Automotriz - Taller Toluca | Gestión de Vehículos (TMS-13 / TMS-14)";
+            lblHeaderSubtitle.Text = "Sistema de Gestión Automotriz - Taller Toluca | Gestión de Vehículos";
 
             // 
             // btnCerrarForm
@@ -162,6 +162,7 @@ namespace TallerTolucaUI
             // 
             // pnlFormCard
             // 
+            pnlFormCard.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             pnlFormCard.BackColor = System.Drawing.Color.White;
             pnlFormCard.Controls.Add(lblFormTitulo);
             pnlFormCard.Controls.Add(lblCamposObligatorios);
@@ -544,6 +545,7 @@ namespace TallerTolucaUI
             // 
             // txtBuscar
             // 
+            txtBuscar.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             txtBuscar.BackColor = System.Drawing.Color.FromArgb(248, 250, 252);
             txtBuscar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             txtBuscar.Font = new System.Drawing.Font("Segoe UI", 10F);
@@ -558,6 +560,7 @@ namespace TallerTolucaUI
             // 
             // btnRefrescar
             // 
+            btnRefrescar.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             btnRefrescar.BackColor = System.Drawing.Color.FromArgb(241, 245, 249);
             btnRefrescar.Cursor = System.Windows.Forms.Cursors.Hand;
             btnRefrescar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(203, 213, 225);
@@ -610,16 +613,20 @@ namespace TallerTolucaUI
             // 
             // FrmVehiculos
             // 
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.Color.FromArgb(241, 245, 249);
             ClientSize = new System.Drawing.Size(980, 640);
             Controls.Add(pnlTableCard);
             Controls.Add(pnlFormCard);
             Controls.Add(pnlHeader);
             Font = new System.Drawing.Font("Segoe UI", 9F);
-            FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
+            MaximizeBox = true;
             MinimumSize = new System.Drawing.Size(950, 620);
             Name = "FrmVehiculos";
             StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            WindowState = System.Windows.Forms.FormWindowState.Maximized;
             Text = "Administración de Vehículos";
             Load += FrmVehiculos_Load;
             pnlHeader.ResumeLayout(false);

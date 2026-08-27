@@ -133,7 +133,7 @@ namespace TallerTolucaUI
             lblHeaderSubtitle.Name = "lblHeaderSubtitle";
             lblHeaderSubtitle.Size = new System.Drawing.Size(450, 15);
             lblHeaderSubtitle.TabIndex = 2;
-            lblHeaderSubtitle.Text = "Sistema de Gestión Automotriz - Taller Toluca | Programación (TMS-31 / TMS-32 / TMS-33)";
+            lblHeaderSubtitle.Text = "Sistema de Gestión Automotriz - Taller Toluca | Programación de Citas";
 
             // 
             // btnCerrarForm
@@ -156,6 +156,7 @@ namespace TallerTolucaUI
             // 
             // pnlFormCard
             // 
+            pnlFormCard.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             pnlFormCard.BackColor = System.Drawing.Color.White;
             pnlFormCard.Controls.Add(lblFormTitulo);
             pnlFormCard.Controls.Add(lblCamposObligatorios);
@@ -362,6 +363,7 @@ namespace TallerTolucaUI
             // 
             // lblMensaje
             // 
+            lblMensaje.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             lblMensaje.Font = new System.Drawing.Font("Segoe UI", 8.5F);
             lblMensaje.ForeColor = System.Drawing.Color.FromArgb(220, 38, 38);
             lblMensaje.Location = new System.Drawing.Point(20, 328);
@@ -374,6 +376,7 @@ namespace TallerTolucaUI
             // 
             // btnGuardar
             // 
+            btnGuardar.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             btnGuardar.BackColor = System.Drawing.Color.FromArgb(2, 132, 199);
             btnGuardar.Cursor = System.Windows.Forms.Cursors.Hand;
             btnGuardar.FlatAppearance.BorderSize = 0;
@@ -391,6 +394,7 @@ namespace TallerTolucaUI
             // 
             // btnModificar
             // 
+            btnModificar.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             btnModificar.BackColor = System.Drawing.Color.FromArgb(13, 148, 136);
             btnModificar.Cursor = System.Windows.Forms.Cursors.Hand;
             btnModificar.FlatAppearance.BorderSize = 0;
@@ -408,6 +412,7 @@ namespace TallerTolucaUI
             // 
             // btnCancelarCita
             // 
+            btnCancelarCita.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             btnCancelarCita.BackColor = System.Drawing.Color.FromArgb(220, 38, 38);
             btnCancelarCita.Cursor = System.Windows.Forms.Cursors.Hand;
             btnCancelarCita.FlatAppearance.BorderSize = 0;
@@ -425,6 +430,7 @@ namespace TallerTolucaUI
             // 
             // btnLimpiar
             // 
+            btnLimpiar.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             btnLimpiar.BackColor = System.Drawing.Color.FromArgb(100, 116, 139);
             btnLimpiar.Cursor = System.Windows.Forms.Cursors.Hand;
             btnLimpiar.FlatAppearance.BorderSize = 0;
@@ -483,6 +489,7 @@ namespace TallerTolucaUI
             // 
             // txtBuscar
             // 
+            txtBuscar.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             txtBuscar.BackColor = System.Drawing.Color.FromArgb(248, 250, 252);
             txtBuscar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             txtBuscar.Font = new System.Drawing.Font("Segoe UI", 10F);
@@ -497,6 +504,7 @@ namespace TallerTolucaUI
             // 
             // btnRefrescar
             // 
+            btnRefrescar.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             btnRefrescar.BackColor = System.Drawing.Color.FromArgb(241, 245, 249);
             btnRefrescar.Cursor = System.Windows.Forms.Cursors.Hand;
             btnRefrescar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(203, 213, 225);
@@ -549,16 +557,20 @@ namespace TallerTolucaUI
             // 
             // FrmCitas
             // 
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.Color.FromArgb(241, 245, 249);
             ClientSize = new System.Drawing.Size(980, 640);
             Controls.Add(pnlTableCard);
             Controls.Add(pnlFormCard);
             Controls.Add(pnlHeader);
             Font = new System.Drawing.Font("Segoe UI", 9F);
-            FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
+            MaximizeBox = true;
             MinimumSize = new System.Drawing.Size(950, 620);
             Name = "FrmCitas";
             StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            WindowState = System.Windows.Forms.FormWindowState.Maximized;
             Text = "Agenda y Control de Citas";
             Load += FrmCitas_Load;
             pnlHeader.ResumeLayout(false);

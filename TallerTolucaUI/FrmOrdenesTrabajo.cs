@@ -62,6 +62,7 @@ namespace TallerTolucaUI
                 string basePath = AppDomain.CurrentDomain.BaseDirectory;
                 string[] possiblePaths = new string[]
                 {
+                    Path.Combine(basePath, "Assets", "logo.png"),
                     Path.Combine(basePath, "image1.png"),
                     Path.Combine(basePath, "..", "..", "..", "doc_extracted", "image1.png")
                 };

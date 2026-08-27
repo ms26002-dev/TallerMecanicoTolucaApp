@@ -37,6 +37,7 @@ namespace TallerTolucaUI
                 string basePath = AppDomain.CurrentDomain.BaseDirectory;
                 string[] possiblePaths = new string[]
                 {
+                    Path.Combine(basePath, "Assets", "logo.png"),
                     Path.Combine(basePath, "image1.png"),
                     Path.Combine(basePath, "..", "..", "..", "doc_extracted", "image1.png")
                 };
@@ -169,14 +170,18 @@ namespace TallerTolucaUI
         {
             string filtro = txtBuscar.Text.Trim().ToLower();
 
+            // Solo se muestran los empleados activos: los dados de baja (Eliminar)
+            // no deben seguir apareciendo en el listado.
+            IEnumerable<EmpleadoEN> baseLista = _listaEmpleados.Where(e => e.Estado == "Activo");
+
             List<EmpleadoEN> filtrados;
             if (string.IsNullOrEmpty(filtro))
             {
-                filtrados = _listaEmpleados;
+                filtrados = baseLista.ToList();
             }
             else
             {
-                filtrados = _listaEmpleados.Where(e =>
+                filtrados = baseLista.Where(e =>
                     (e.NombreCompleto != null && e.NombreCompleto.ToLower().Contains(filtro)) ||
                     (e.Cargo != null && e.Cargo.ToLower().Contains(filtro)) ||
                     (e.Telefono != null && e.Telefono.ToLower().Contains(filtro)) ||

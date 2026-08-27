@@ -8,5 +8,6 @@ namespace TallerToluca.EN
         public string ClaveHash { get; set; }
         public string Rol { get; set; } // Administrador, Recepcionista, Mecánico
         public string Estado { get; set; } = "Activo";
+        public string NombreEmpleado { get; set; }
     }
 }

@@ -19,9 +19,24 @@ namespace TallerTolucaUI
 
         private void FrmLogin_Load(object sender, EventArgs e)
         {
+            CentrarTarjeta();
             CargarLogotipo();
             VerificarCapsLock();
             txtUsuario.Focus();
+        }
+
+        private void FrmLogin_Resize(object sender, EventArgs e)
+        {
+            CentrarTarjeta();
+        }
+
+        private void CentrarTarjeta()
+        {
+            if (pnlCard != null)
+            {
+                pnlCard.Left = Math.Max(10, (this.ClientSize.Width - pnlCard.Width) / 2);
+                pnlCard.Top = Math.Max(10, (this.ClientSize.Height - pnlCard.Height) / 2);
+            }
         }
 
         private void CargarLogotipo()
@@ -32,6 +47,7 @@ namespace TallerTolucaUI
                 string basePath = AppDomain.CurrentDomain.BaseDirectory;
                 string[] possiblePaths = new string[]
                 {
+                    Path.Combine(basePath, "Assets", "logo.png"),
                     Path.Combine(basePath, "image1.png"),
                     Path.Combine(basePath, "..", "..", "..", "doc_extracted", "image1.png"),
                     Path.Combine(basePath, "..", "..", "..", "ref_ui", "screenshot_downloads.png")

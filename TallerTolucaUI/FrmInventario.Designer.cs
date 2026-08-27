@@ -6,8 +6,10 @@ namespace TallerTolucaUI
 
         // UI Layout Controls
         private System.Windows.Forms.Panel pnlHeader;
+        private System.Windows.Forms.PictureBox picLogoHeader;
         private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.Label lblSubtitulo;
+        private System.Windows.Forms.Button btnVolverMenu;
         private System.Windows.Forms.TabControl tabControlInventario;
         private System.Windows.Forms.TabPage tabRepuestos;
         private System.Windows.Forms.TabPage tabMovimientos;
@@ -46,8 +48,10 @@ namespace TallerTolucaUI
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             pnlHeader = new Panel();
+            picLogoHeader = new PictureBox();
             lblSubtitulo = new Label();
             lblTitulo = new Label();
+            btnVolverMenu = new Button();
             tabControlInventario = new TabControl();
             tabRepuestos = new TabPage();
             dgvRepuestos = new DataGridView();
@@ -66,6 +70,7 @@ namespace TallerTolucaUI
             btnNuevoMovimiento = new Button();
             lblConteoMovimientos = new Label();
             pnlHeader.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picLogoHeader).BeginInit();
             tabControlInventario.SuspendLayout();
             tabRepuestos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvRepuestos).BeginInit();
@@ -80,20 +85,48 @@ namespace TallerTolucaUI
             // pnlHeader
             // 
             pnlHeader.BackColor = Color.White;
+            pnlHeader.Controls.Add(picLogoHeader);
             pnlHeader.Controls.Add(lblSubtitulo);
             pnlHeader.Controls.Add(lblTitulo);
+            pnlHeader.Controls.Add(btnVolverMenu);
             pnlHeader.Dock = DockStyle.Top;
             pnlHeader.Location = new Point(0, 0);
             pnlHeader.Name = "pnlHeader";
             pnlHeader.Size = new Size(1040, 75);
             pnlHeader.TabIndex = 0;
             // 
+            // picLogoHeader
+            // 
+            picLogoHeader.Location = new Point(20, 12);
+            picLogoHeader.Name = "picLogoHeader";
+            picLogoHeader.Size = new Size(48, 46);
+            picLogoHeader.SizeMode = PictureBoxSizeMode.Zoom;
+            picLogoHeader.TabIndex = 3;
+            picLogoHeader.TabStop = false;
+            // 
+            // btnVolverMenu
+            // 
+            btnVolverMenu.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnVolverMenu.BackColor = Color.FromArgb(248, 250, 252);
+            btnVolverMenu.Cursor = Cursors.Hand;
+            btnVolverMenu.FlatAppearance.BorderColor = Color.FromArgb(203, 213, 225);
+            btnVolverMenu.FlatStyle = FlatStyle.Flat;
+            btnVolverMenu.Font = new Font("Segoe UI", 9F);
+            btnVolverMenu.ForeColor = Color.FromArgb(71, 85, 105);
+            btnVolverMenu.Location = new Point(920, 20);
+            btnVolverMenu.Name = "btnVolverMenu";
+            btnVolverMenu.Size = new Size(100, 36);
+            btnVolverMenu.TabIndex = 2;
+            btnVolverMenu.Text = "Volver al Menú";
+            btnVolverMenu.UseVisualStyleBackColor = false;
+            btnVolverMenu.Click += (s, e) => this.Close();
+            // 
             // lblSubtitulo
             // 
             lblSubtitulo.AutoSize = true;
             lblSubtitulo.Font = new Font("Segoe UI", 9.5F);
             lblSubtitulo.ForeColor = Color.FromArgb(92, 122, 144);
-            lblSubtitulo.Location = new Point(22, 44);
+            lblSubtitulo.Location = new Point(78, 44);
             lblSubtitulo.Name = "lblSubtitulo";
             lblSubtitulo.Size = new Size(401, 17);
             lblSubtitulo.TabIndex = 1;
@@ -104,7 +137,7 @@ namespace TallerTolucaUI
             lblTitulo.AutoSize = true;
             lblTitulo.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
             lblTitulo.ForeColor = Color.FromArgb(10, 22, 40);
-            lblTitulo.Location = new Point(20, 12);
+            lblTitulo.Location = new Point(76, 10);
             lblTitulo.Name = "lblTitulo";
             lblTitulo.Size = new Size(236, 30);
             lblTitulo.TabIndex = 0;
@@ -190,26 +223,28 @@ namespace TallerTolucaUI
             // 
             // cboFiltroStock
             // 
+            cboFiltroStock.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             cboFiltroStock.DropDownStyle = ComboBoxStyle.DropDownList;
             cboFiltroStock.FlatStyle = FlatStyle.Flat;
             cboFiltroStock.Font = new Font("Segoe UI", 9.5F);
             cboFiltroStock.FormattingEnabled = true;
             cboFiltroStock.Items.AddRange(new object[] { "Todos los stocks", "Disponible", "Bajo stock", "Sin stock" });
-            cboFiltroStock.Location = new Point(435, 8);
+            cboFiltroStock.Location = new Point(780, 8);
             cboFiltroStock.Name = "cboFiltroStock";
-            cboFiltroStock.Size = new Size(200, 25);
+            cboFiltroStock.Size = new Size(220, 25);
             cboFiltroStock.TabIndex = 1;
             cboFiltroStock.SelectedIndexChanged += cboFiltroStock_SelectedIndexChanged;
             // 
             // txtBuscarRepuesto
             // 
+            txtBuscarRepuesto.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             txtBuscarRepuesto.BackColor = Color.White;
             txtBuscarRepuesto.BorderStyle = BorderStyle.FixedSingle;
             txtBuscarRepuesto.Font = new Font("Segoe UI", 10F);
             txtBuscarRepuesto.ForeColor = Color.FromArgb(10, 22, 40);
             txtBuscarRepuesto.Location = new Point(0, 8);
             txtBuscarRepuesto.Name = "txtBuscarRepuesto";
-            txtBuscarRepuesto.Size = new Size(420, 25);
+            txtBuscarRepuesto.Size = new Size(760, 25);
             txtBuscarRepuesto.TabIndex = 0;
             txtBuscarRepuesto.Text = "🔍 Buscar por nombre o código...";
             txtBuscarRepuesto.TextChanged += txtBuscarRepuesto_TextChanged;
@@ -322,26 +357,28 @@ namespace TallerTolucaUI
             // 
             // cboFiltroTipoMov
             // 
+            cboFiltroTipoMov.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             cboFiltroTipoMov.DropDownStyle = ComboBoxStyle.DropDownList;
             cboFiltroTipoMov.FlatStyle = FlatStyle.Flat;
             cboFiltroTipoMov.Font = new Font("Segoe UI", 9.5F);
             cboFiltroTipoMov.FormattingEnabled = true;
             cboFiltroTipoMov.Items.AddRange(new object[] { "Tipo de movimiento", "Entrada", "Salida" });
-            cboFiltroTipoMov.Location = new Point(435, 8);
+            cboFiltroTipoMov.Location = new Point(780, 8);
             cboFiltroTipoMov.Name = "cboFiltroTipoMov";
-            cboFiltroTipoMov.Size = new Size(200, 25);
+            cboFiltroTipoMov.Size = new Size(220, 25);
             cboFiltroTipoMov.TabIndex = 1;
             cboFiltroTipoMov.SelectedIndexChanged += cboFiltroTipoMov_SelectedIndexChanged;
             // 
             // txtBuscarMovimiento
             // 
+            txtBuscarMovimiento.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             txtBuscarMovimiento.BackColor = Color.White;
             txtBuscarMovimiento.BorderStyle = BorderStyle.FixedSingle;
             txtBuscarMovimiento.Font = new Font("Segoe UI", 10F);
             txtBuscarMovimiento.ForeColor = Color.FromArgb(10, 22, 40);
             txtBuscarMovimiento.Location = new Point(0, 8);
             txtBuscarMovimiento.Name = "txtBuscarMovimiento";
-            txtBuscarMovimiento.Size = new Size(420, 25);
+            txtBuscarMovimiento.Size = new Size(760, 25);
             txtBuscarMovimiento.TabIndex = 0;
             txtBuscarMovimiento.Text = "🔍 Buscar por repuesto o motivo...";
             txtBuscarMovimiento.TextChanged += txtBuscarMovimiento_TextChanged;
@@ -394,12 +431,17 @@ namespace TallerTolucaUI
             ClientSize = new Size(1040, 660);
             Controls.Add(tabControlInventario);
             Controls.Add(pnlHeader);
+            FormBorderStyle = FormBorderStyle.Sizable;
+            MaximizeBox = true;
+            MinimumSize = new Size(950, 600);
             Name = "FrmInventario";
             StartPosition = FormStartPosition.CenterScreen;
+            WindowState = FormWindowState.Maximized;
             Text = "Gestión de Inventario - Taller Toluca";
             Load += FrmInventario_Load;
             pnlHeader.ResumeLayout(false);
             pnlHeader.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picLogoHeader).EndInit();
             tabControlInventario.ResumeLayout(false);
             tabRepuestos.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvRepuestos).EndInit();

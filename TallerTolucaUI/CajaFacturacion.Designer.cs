@@ -174,7 +174,7 @@ namespace TallerTolucaUI
             lblHeaderSubtitle.Name = "lblHeaderSubtitle";
             lblHeaderSubtitle.Size = new System.Drawing.Size(495, 15);
             lblHeaderSubtitle.TabIndex = 2;
-            lblHeaderSubtitle.Text = "Sistema de Gestión Automotriz - Taller Toluca | Módulo Financiero (TMS-23 / TMS-24 / TMS-25)";
+            lblHeaderSubtitle.Text = "Sistema de Gestión Automotriz - Taller Toluca | Módulo Financiero";
 
             // 
             // btnCerrarForm
@@ -317,6 +317,7 @@ namespace TallerTolucaUI
             // 
             // pnlFormCard
             // 
+            pnlFormCard.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             pnlFormCard.BackColor = System.Drawing.Color.White;
             pnlFormCard.Controls.Add(lblFormTitulo);
             pnlFormCard.Controls.Add(lblCamposObligatorios);
@@ -500,6 +501,7 @@ namespace TallerTolucaUI
             // 
             // lblMensaje
             // 
+            lblMensaje.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             lblMensaje.Font = new System.Drawing.Font("Segoe UI", 8.5F);
             lblMensaje.ForeColor = System.Drawing.Color.FromArgb(220, 38, 38);
             lblMensaje.Location = new System.Drawing.Point(20, 282);
@@ -512,6 +514,7 @@ namespace TallerTolucaUI
             // 
             // btnFacturarCobrar
             // 
+            btnFacturarCobrar.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             btnFacturarCobrar.BackColor = System.Drawing.Color.FromArgb(2, 132, 199);
             btnFacturarCobrar.Cursor = System.Windows.Forms.Cursors.Hand;
             btnFacturarCobrar.FlatAppearance.BorderSize = 0;
@@ -529,6 +532,7 @@ namespace TallerTolucaUI
             // 
             // btnVerTicket
             // 
+            btnVerTicket.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             btnVerTicket.BackColor = System.Drawing.Color.FromArgb(100, 116, 139);
             btnVerTicket.Cursor = System.Windows.Forms.Cursors.Hand;
             btnVerTicket.FlatAppearance.BorderSize = 0;
@@ -546,6 +550,7 @@ namespace TallerTolucaUI
             // 
             // btnLimpiar
             // 
+            btnLimpiar.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             btnLimpiar.BackColor = System.Drawing.Color.FromArgb(100, 116, 139);
             btnLimpiar.Cursor = System.Windows.Forms.Cursors.Hand;
             btnLimpiar.FlatAppearance.BorderSize = 0;
@@ -563,6 +568,7 @@ namespace TallerTolucaUI
             // 
             // btnArqueo
             // 
+            btnArqueo.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             btnArqueo.BackColor = System.Drawing.Color.FromArgb(100, 116, 139);
             btnArqueo.Cursor = System.Windows.Forms.Cursors.Hand;
             btnArqueo.FlatAppearance.BorderSize = 0;
@@ -835,6 +841,8 @@ namespace TallerTolucaUI
             // 
             // FrmCajaFacturacion
             // 
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.Color.FromArgb(241, 245, 249);
             ClientSize = new System.Drawing.Size(1080, 680);
             Controls.Add(pnlTableCard);
@@ -842,10 +850,12 @@ namespace TallerTolucaUI
             Controls.Add(pnlStatusCard);
             Controls.Add(pnlHeader);
             Font = new System.Drawing.Font("Segoe UI", 9F);
-            FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
+            MaximizeBox = true;
             MinimumSize = new System.Drawing.Size(1050, 650);
             Name = "FrmCajaFacturacion";
             StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            WindowState = System.Windows.Forms.FormWindowState.Maximized;
             Text = "Control de Caja y Facturación";
             Load += FrmCajaFacturacion_Load;
             pnlHeader.ResumeLayout(false);

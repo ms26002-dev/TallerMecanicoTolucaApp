@@ -280,12 +280,14 @@ namespace TallerTolucaUI
             ClientSize = new System.Drawing.Size(460, 560);
             Controls.Add(pnlCard);
             Font = new System.Drawing.Font("Segoe UI", 9F);
-            FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            MaximizeBox = false;
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
+            MaximizeBox = true;
             Name = "FrmLogin";
             StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            WindowState = System.Windows.Forms.FormWindowState.Maximized;
             Text = "Inicio de Sesión - Sistema de Gestión de Taller Mecánico";
             Load += FrmLogin_Load;
+            Resize += FrmLogin_Resize;
             pnlCard.ResumeLayout(false);
             pnlCard.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picLogo).EndInit();
